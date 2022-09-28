@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% include 'include/head.html' %}
+    <title>Title</title>
+</head>
+<body>
+    <h1>Подача заявления</h1>
+    <form method="post">
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
