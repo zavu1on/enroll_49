@@ -1,9 +1,25 @@
-from django.forms import ModelForm
+from django import forms
 from .models import EnrollApplication
+from .validators import validate_password_exists
 
 
-class EnrollForm(ModelForm):
-
+class EnrollForm(forms.ModelForm):
     class Meta:
         model = EnrollApplication
-        exclude = ('status', 'rating_place')
+        exclude = ('status', 'rating_place', 'created_date')
+        widgets = {
+            'birthday': forms.DateInput(attrs={
+                'type': 'date'
+            })
+        }
+
+
+class LoginForm(forms.Form):
+    passport = forms.CharField(
+        max_length=11,
+        min_length=11,
+        validators=[validate_password_exists],
+        widget=forms.TextInput(attrs={
+            'label': 'Серия и номер паспорта'
+        })
+    )
