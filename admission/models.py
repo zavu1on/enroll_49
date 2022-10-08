@@ -20,17 +20,9 @@ class ProfileClass(models.Model):
     """ Профильный класс """
 
     name = models.CharField('Название', max_length=300)
-    first_profile_exam = models.ForeignKey(
-        Exam, models.SET_NULL,
-        verbose_name='Профильный экзамен № 1',
-        null=True,
-        related_name='first_profile_exam_for_profile_class'
-    )
-    second_profile_exam = models.ForeignKey(
-        Exam, models.SET_NULL,
-        verbose_name='Профильный экзамен № 2',
-        null=True,
-        related_name='second_profile_exam_for_profile_class'
+    profile_exams = models.ManyToManyField(
+        Exam,
+        verbose_name='Профильные экзамены',
     )
 
     def __str__(self):
@@ -44,9 +36,10 @@ class ProfileClass(models.Model):
 class EnrollApplication(models.Model):
     """ Заявление на поступление в лицей """
     STATUSES = (
-        ('verification', 'В процессе верификации'),
-        ('process', 'В процессе обработки'),
-        ('results', 'Есть результаты отбора')
+        ('verification', 'В процессе верификации заявки'),
+        ('processed', 'В процессе обработки заявки'),
+        ('successes', 'Вы приняты'),
+        ('rejected', 'Вы не приняты'),
     )
     NOTIFICATION_METHOD = (
         ('phone', 'По номеру телефона'),
@@ -72,8 +65,16 @@ class EnrollApplication(models.Model):
 
     # данные о результатах обучения ребенка
     certificate_average_score = models.FloatField('Средний балл аттестата')
-    russian_exam_point = models.PositiveIntegerField('Баллы за экзамен по русскому языку')
-    math_exam_point = models.PositiveIntegerField('Баллы за экзамен по математике')
+    russian_exam_point = models.PositiveIntegerField('Баллы за экзамен по русскому языку', help_text='Первичные')
+    russian_exam_mark = models.PositiveIntegerField(
+        'Оценка за экзамен по русскому языку',
+        validators=[validators.validate_mark]
+    )
+    math_exam_point = models.PositiveIntegerField('Баллы за экзамен по математике', help_text='Первичные')
+    math_exam_mark = models.PositiveIntegerField(
+        'Оценка за экзамен по математике',
+        validators=[validators.validate_mark]
+    )
     first_profile_exam = models.ForeignKey(
         Exam,
         models.SET_NULL,
@@ -82,6 +83,10 @@ class EnrollApplication(models.Model):
         related_name='first_profile_exam'
     )
     first_profile_exam_point = models.PositiveIntegerField('Баллы за экзамен по выбору № 1')
+    first_profile_exam_mark = models.PositiveIntegerField(
+        'Оценка за экзамен по выбору № 1',
+        validators=[validators.validate_mark]
+    )
     second_profile_exam = models.ForeignKey(
         Exam,
         models.SET_NULL,
@@ -90,7 +95,11 @@ class EnrollApplication(models.Model):
         related_name='second_profile_exam'
     )
     second_profile_exam_point = models.PositiveIntegerField('Баллы за экзамен по выбору № 2')
-    profile_class = models.ManyToManyField(ProfileClass, verbose_name='Профильные классы')
+    second_profile_exam_mark = models.PositiveIntegerField(
+        'Оценка за экзамен по выбору № 2',
+        validators=[validators.validate_mark]
+    )
+    profile_classes = models.ManyToManyField(ProfileClass, verbose_name='Профильные классы')
 
     # файлы
     passport_file = models.FileField('Паспорт', upload_to='passport/')
@@ -98,8 +107,9 @@ class EnrollApplication(models.Model):
     marks_file = models.FileField('Оценки', upload_to='marks/')
     exams_file = models.FileField('Результаты ОГЭ', upload_to='exams/')
 
+    # прочие поля, заполняемые учеником
     is_accepted = models.BooleanField(
-        'Согласие на обработку данных',
+        'Согласие на обработку персональных данных',
         default=False,
         validators=[validators.validate_is_true]
     )
@@ -109,7 +119,7 @@ class EnrollApplication(models.Model):
         choices=NOTIFICATION_METHOD
     )
 
-    # поля для администрации лицея
+    # поля, заполняемые администрацией лицея
     status = models.CharField(
         'Статус заявки',
         max_length=100,
@@ -117,6 +127,7 @@ class EnrollApplication(models.Model):
         default='verification',
         help_text='Заполняется администрацией'
     )
+    message = models.TextField('Сообщение для учеников', default='')
     rating_place = models.IntegerField(
         'Место в общем рейтинге',
         default=-1,
@@ -130,3 +141,18 @@ class EnrollApplication(models.Model):
     class Meta:
         verbose_name = 'Заявление на поступление в лицей'
         verbose_name_plural = 'Заявления на поступление в лицей'
+
+
+class ExtraAchievement(models.Model):
+    """ Дополнительные достижения """
+
+    file = models.FileField('Файл', upload_to='achievements/')
+    point = models.PositiveIntegerField('Баллы за достижение', default=0)
+    enroll_application = models.ForeignKey(EnrollApplication, models.CASCADE, verbose_name='Заявление на поступление в лицей')
+
+    def __str__(self):
+        return self.file.name
+
+    class Meta:
+        verbose_name = 'Дополнительное достижение'
+        verbose_name_plural = 'Дополнительные достижения'

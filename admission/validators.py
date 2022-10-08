@@ -24,3 +24,8 @@ def validate_password_exists(value: str):
         models.EnrollApplication.objects.get(passport_seria=seria, passport_number=number)
     except models.EnrollApplication.DoesNotExist:
         raise ValidationError('Заявка не была найдена')
+
+
+def validate_mark(value: int):
+    if not (2 <= value <= 5):
+        raise ValidationError('Введите корректную оценку за экзамен')

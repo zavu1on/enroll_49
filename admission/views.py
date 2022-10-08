@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView
 from .forms import EnrollForm, LoginForm
-from .models import EnrollApplication
+from .models import EnrollApplication, ExtraAchievement
 # Create your views here.
 
 
@@ -17,9 +17,28 @@ class EnrollView(FormView):
 
     def form_valid(self, form: EnrollForm):
         data = form.cleaned_data
-        form.save()
 
-        self.request.session['auth'] = f'{data["password_seria"]} {data["password_seria"]}'
+        try:
+            EnrollApplication.objects.get(
+                passport_seria=data['passport_seria'],
+                passport_number=data['passport_number']
+            )
+
+            form.errors['passport_seria'] = ['Такой паспорт уже зарегистрирован']
+            form.errors['passport_number'] = ['Такой паспорт уже зарегистрирован']
+            return super().form_invalid(form)
+        except EnrollApplication.DoesNotExist:
+            pass
+
+        application: EnrollApplication = form.save()
+
+        for file in self.request.FILES.getlist('achievements'):
+            ExtraAchievement.objects.create(
+                file=file,
+                enroll_application=application,
+            )
+
+        self.request.session['auth'] = f'{data["passport_seria"]} {data["passport_number"]}'
 
         return super().form_valid(form)
 
@@ -46,6 +65,7 @@ class ProfileView(TemplateView):
 
         ctx['fio'] = enroll_app.fio
         ctx['status'] = list(filter(lambda el: el[0] == enroll_app.status, EnrollApplication.STATUSES))[0][1]
+        ctx['message'] = enroll_app.message
 
         return ctx
 

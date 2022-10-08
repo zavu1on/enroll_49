@@ -4,9 +4,13 @@ from .validators import validate_password_exists
 
 
 class EnrollForm(forms.ModelForm):
+    achievements = forms.FileField(label='Индивидуальные достижения', widget=forms.FileInput(attrs={
+        'multiple': True
+    }))
+
     class Meta:
         model = EnrollApplication
-        exclude = ('status', 'rating_place', 'created_date')
+        exclude = ('status', 'rating_place', 'message', 'created_date')
         widgets = {
             'birthday': forms.DateInput(attrs={
                 'type': 'date'
