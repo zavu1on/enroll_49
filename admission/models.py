@@ -50,8 +50,8 @@ class EnrollApplication(models.Model):
     fio = models.CharField('ФИО', max_length=300)
     birthday = models.DateField('Дата рождения')
     address = models.CharField('Адрес места жительства', max_length=500)
-    phone = models.CharField('Контактный телефон', max_length=100, blank=True)
-    email = models.CharField('Контактный адрес электронной почты', max_length=300, blank=True)
+    phone = models.CharField('Контактный телефон', max_length=100, blank=True, unique=True)
+    email = models.CharField('Контактный адрес электронной почты', max_length=300, blank=True, unique=True)
     passport_seria = models.PositiveIntegerField('Серия паспорта', validators=[validators.validate_password_seria])
     passport_number = models.PositiveIntegerField('Номер паспорта', validators=[validators.validate_password_number])
 
@@ -127,8 +127,8 @@ class EnrollApplication(models.Model):
         default='verification',
         help_text='Заполняется администрацией'
     )
-    message = models.TextField('Сообщение для учеников', default='')
-    rating_place = models.IntegerField(
+    message = models.TextField('Сообщение для учеников', default='', blank=True)
+    rating_place = models.FloatField(
         'Место в общем рейтинге',
         default=-1,
         help_text='Заполняется администрацией'

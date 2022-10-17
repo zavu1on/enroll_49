@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.db.models import QuerySet
+
 from . import models
 from .services import calc_rating
 # Register your models here.
@@ -10,18 +12,29 @@ admin.site.register(models.ExtraAchievement)
 
 class RatingListFilter(admin.SimpleListFilter):
     title = 'Рейтинг'
-    parameter_name = 'profile_classes'
+    parameter_name = 'sorting'
 
     def lookups(self, request, model_admin):
         return (
             ('with_rating', 'С рейтингом'),
         )
 
-    def queryset(self, request, queryset):
+    def queryset(self, request, queryset: QuerySet):
         value = self.value()
 
         if value == 'with_rating':
-            queryset = sorted(queryset, key=calc_rating)
+            profile_id = None
+            if 'profile_classes__id__exact' in request.GET:
+                profile_id = request.GET['profile_classes__id__exact']
+
+            for app in queryset.all():
+                calc_rating(app, profile_id)
+
+            queryset = queryset.order_by('-rating_place')
+        else:
+            for app in queryset.all():
+                app.rating_place = 0
+                app.save()
 
         return queryset
 
@@ -128,6 +141,7 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
         ('Поля, заполняемые администрацией лицея', {
             'fields': (
                 'status',
+                'rating_place',
                 'message',
             )
         }),
