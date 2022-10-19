@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView
 from .forms import EnrollForm, LoginForm
-from .models import EnrollApplication, ExtraAchievement
+from .models import EnrollApplication, ExtraAchievement, ProfileClass
 # Create your views here.
 
 
@@ -85,3 +85,45 @@ class LoginView(FormView):
 def logout_view(request):
     request.session['auth'] = None
     return redirect('/')
+
+
+def test_data(request):
+    # todo delete
+    import random
+    import datetime
+
+    # for i in range(500):
+    #     app = EnrollApplication.objects.create(
+    #         fio='test test test',
+    #         birthday=datetime.datetime.now(),
+    #         address='test',
+    #         phone='test',
+    #         email='test@mail.ru',
+    #         passport_seria=random.randrange(1000, 9999),
+    #         passport_number=random.randrange(100000, 999999),
+    #
+    #         father_fio='test test test',
+    #         father_phone='test test test',
+    #         father_address='test test test',
+    #         mothers_fio='test test test',
+    #         mothers_phone='test test test',
+    #         mothers_address='test test test',
+    #
+    #         certificate_average_score=random.randrange(2, 5),
+    #         russian_exam_point=random.randrange(1, 33),
+    #         russian_exam_mark=random.randrange(2, 5),
+    #         math_exam_point=random.randrange(1, 33),
+    #         math_exam_mark=random.randrange(2, 5),
+    #
+    #         first_profile_exam_id=1,
+    #         first_profile_exam_point=random.randrange(1, 33),
+    #         first_profile_exam_mark=random.randrange(2, 5),
+    #         second_profile_exam_id=2,
+    #         second_profile_exam_point=random.randrange(1, 33),
+    #         second_profile_exam_mark=random.randrange(2, 5),
+    #
+    #         is_accepted=True,
+    #         notification_method='phone'
+    #     )
+    #     app.profile_classes.add(ProfileClass.objects.get(id=1))
+    #     app.save()

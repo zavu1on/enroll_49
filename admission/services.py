@@ -34,5 +34,4 @@ def calc_rating(application: EnrollApplication, profile_id: int):
             print(k2)
 
     application.rating_place = k1 + k2 + k3
-    print(k1 + k2 + k3)
-    application.save()
+    application.save(update_fields=['rating_place'])

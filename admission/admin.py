@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.db.models import QuerySet
 
 from . import models
 from .services import calc_rating
@@ -17,9 +16,10 @@ class RatingListFilter(admin.SimpleListFilter):
     def lookups(self, request, model_admin):
         return (
             ('with_rating', 'С рейтингом'),
+            ('clear_rating', 'Обнулить рейтинг'),
         )
 
-    def queryset(self, request, queryset: QuerySet):
+    def queryset(self, request, queryset):
         value = self.value()
 
         if value == 'with_rating':
@@ -29,12 +29,10 @@ class RatingListFilter(admin.SimpleListFilter):
 
             for app in queryset.all():
                 calc_rating(app, profile_id)
-
-            queryset = queryset.order_by('-rating_place')
-        else:
+        elif value == 'clear_rating':
             for app in queryset.all():
                 app.rating_place = 0
-                app.save()
+                app.save(update_fields=['rating_place'])
 
         return queryset
 
@@ -46,8 +44,10 @@ class ExtraAchievementInline(admin.StackedInline):
 
 @admin.register(models.EnrollApplication)
 class EnrollApplicationAdmin(admin.ModelAdmin):
-    list_display = ('fio', 'get_profile_classes', 'status', 'rating_place')
+    list_display = ('id', 'fio', 'get_profile_classes', 'status', 'rating_place')
+    list_display_links = ('fio',)
     list_filter = ('profile_classes', 'status', RatingListFilter)
+    ordering = ('-rating_place', 'id')
     readonly_fields = (
         'fio',
         'birthday',
