@@ -1,15 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
+{% load static %}
 <html lang="ru">
 <head>
     {% include 'include/head.html' %}
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <title>Лицей 49. Путь в успешное будущее</title>
 </head>
 <body>
-    <h1>Поступи в лучший лицей Калининграда</h1>
-    <a href="/enroll/">Подать заявление</a>
-    <br>
-    <a href="/profile/">Личный кабинет</a>
-    <br>
-    <a href="/admin/">Админка</a>
+    <header>
+        <div class="logo-container">
+            <div class="logo"></div>
+            <div class="title">Лицей 49</div>
+        </div>
+        <div class="right">
+            <nav>
+                <ul>
+                    <li><a href="#profiles">Профили</a></li>
+                    <li><a href="#teachers">Кафедра</a></li>
+                    <li><a href="#statistics">Статистика</a></li>
+                </ul>
+            </nav>
+            <a href="/profile/" class="btn primary ellipse-btn">
+                Личный кабинет
+                <div class="ellipse-container">
+                    <div class="ellipse secondary"></div>
+                    <div class="ellipse secondary"></div>
+                    <div class="ellipse secondary"></div>
+                </div>
+            </a>
+        </div>
+    </header>
+    <div class="intro">
+        <div class="text-container">
+            <div class="content">
+                <div class="text">
+                    Лицей 49<br/>
+                    <div>Путь в успешное будущее</div>
+                </div>
+                <a href="#instructions" class="btn secondary ellipse-btn">
+                    Как поступить
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="img-container">
+            <img src="{% static "image/figure.png" %}" alt="figure">
+        </div>
+    </div>
+    <div class="delimiter primary"></div>
+    <div class="container" id="profiles">
+        <h2 class="right"><span>Набираемые</span> профили</h2>
+        <div class="row profile-container">
+            <div class="col s3">
+                <div class="profile-class"></div>
+            </div>
+            <div class="col s3">
+                <div class="profile-class"></div>
+            </div>
+            <div class="col s3">
+                <div class="profile-class"></div>
+            </div>
+            <div class="col s3 img-col">
+                <img src="{% static "image/ice.png" %}" alt="ice" id="ice">
+            </div>
+        </div>
+        <div class="row profile-container">
+            <div class="col s3 img-col">
+                <img src="{% static "image/star.png" %}" alt="star">
+            </div>
+            <div class="col s3">
+                <div class="profile-class"></div>
+            </div>
+            <div class="col s3">
+                <div class="profile-class"></div>
+            </div>
+            <div class="col s3">
+                <div class="profile-class"></div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static "js/index.js" %}"></script>
 </body>
 </html>

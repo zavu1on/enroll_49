@@ -1,0 +1,54 @@
+.ellipse-btn {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.ellipse-btn:hover .ellipse {
+    transform: translateY(0) scale(2.8);
+}
+
+.ellipse-container {
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.ellipse-container .ellipse {
+    width: 34%;
+    height: 100%;
+    border-radius: 100%;
+    background: var(--gray);
+    position: absolute;
+    transform: scale(1.4) translateY(105%) translateZ(0);
+    transition: all 700ms ease;
+    z-index: -1;
+}
+
+.ellipse-container .ellipse.primary {
+    background: var(--m-primary);
+}
+
+.ellipse-container .ellipse.secondary {
+    background: var(--m-secondary);
+}
+
+.ellipse-container .ellipse:nth-child(1) {
+    left: -5%;
+}
+
+.ellipse-container .ellipse:nth-child(2) {
+    left: 34%;
+    transition-delay: 60ms;
+}
+
+.ellipse-container .ellipse:nth-child(3) {
+    left: 68%;
+    transition-delay: 25ms;
+}

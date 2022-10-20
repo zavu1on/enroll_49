@@ -59,9 +59,9 @@ class EnrollApplication(models.Model):
     father_fio = models.CharField('ФИО отца', max_length=300)
     father_phone = models.CharField('Контактный телефон отца', max_length=100)
     father_address = models.CharField('Адрес места жительства отца', max_length=500)
-    mothers_fio = models.CharField('ФИО матери', max_length=300)  # todo delete s
-    mothers_phone = models.CharField('Контактный телефон матери', max_length=100)  # todo delete s
-    mothers_address = models.CharField('Адрес места жительства матери', max_length=500)  # todo delete s
+    mother_fio = models.CharField('ФИО матери', max_length=300)
+    mother_phone = models.CharField('Контактный телефон матери', max_length=100)
+    mother_address = models.CharField('Адрес места жительства матери', max_length=500)
 
     # данные о результатах обучения ребенка
     certificate_average_score = models.FloatField('Средний балл аттестата', validators=[validators.validate_mark])
