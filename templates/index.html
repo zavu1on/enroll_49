@@ -4,6 +4,11 @@
 <head>
     {% include 'include/head.html' %}
     <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <title>Лицей 49. Путь в успешное будущее</title>
 </head>
 <body>
@@ -51,7 +56,7 @@
             <img src="{% static "image/figure.png" %}" alt="figure">
         </div>
     </div>
-    <div class="delimiter primary"></div>
+    <div class="delimiter primary" style="margin-top: 60px"></div>
     <div class="container" id="profiles">
         <h2 class="right"><span>Набираемые</span> профили</h2>
         <div class="row profile-container">
@@ -70,7 +75,7 @@
         </div>
         <div class="row profile-container">
             <div class="col s3 img-col">
-                <img src="{% static "image/star.png" %}" alt="star">
+                <img src="{% static "image/star.png" %}" class="star" alt="star">
             </div>
             <div class="col s3">
                 <div class="profile-class"></div>
@@ -83,6 +88,57 @@
             </div>
         </div>
     </div>
+    <div class="delimiter secondary"></div>
+    <div class="container">
+        <h2 class="left"><span>Кафедра</span> учителей</h2>
+        <div class="swiper-container teachers">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="teacher">
+                    <div class="text">
+                        <div>Милорадова О.В. 1<br>Русский язык</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="teacher">
+                    <div class="text">
+                        <div>Милорадова О.В. 2<br>Русский язык</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="teacher">
+                    <div class="text">
+                        <div>Милорадова О.В. 3<br>Русский язык</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="teacher">
+                    <div class="text">
+                        <div>Милорадова О.В. 4<br>Русский язык</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="teacher">
+                    <div class="text">
+                        <div>Милорадова О.В. 5<br>Русский язык</div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="teacher">
+                    <div class="text">
+                        <div>Милорадова О.В. 6<br>Русский язык</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="delimiter primary"></div>
     <script src="{% static "js/index.js" %}"></script>
 </body>
 </html>

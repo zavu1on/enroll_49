@@ -6,6 +6,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     padding: 0 120px;
+    margin-top: 16px;
 }
 
 header .logo-container {
@@ -16,17 +17,17 @@ header .logo-container {
 }
 
 header .logo-container .logo {
-    width: 38px;
-    height: 90px;
-    border-radius: 0 0 10px 10px;
+    width: 30px;
+    height: 60px;
+    border-radius: 10px;
     background: var(--m-primary);
 }
 
 header .logo-container .title {
     font-weight: 500;
-    font-size: 40px;
+    font-size: 35px;
     color: var(--white);
-    margin-left: 8px;
+    margin-left: 10px;
 }
 
 header .right {
@@ -34,7 +35,6 @@ header .right {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 16px;
 }
 
 header .right nav ul {
@@ -46,7 +46,7 @@ header .right nav ul {
 }
 
 header .right nav ul li a {
-    font-size: 30px;
+    font-size: 25px;
     margin-right: 70px;
     position: relative;
 }
@@ -89,18 +89,18 @@ header .right nav ul li a:hover::after {
 
 .intro .text-container .content .text {
     font-weight: 500;
-    font-size: 110px;
+    font-size: 95px;
 }
 
 .intro .text-container .content .text div {
-    font-size: 75px;
+    font-size: 60px;
     margin-top: -10px;
 }
 
 .intro .text-container .content .btn {
     margin-left: 0;
-    margin-top: 50px;
-    padding: 16px 40px;
+    margin-top: 80px;
+    padding: 12px 40px;
 }
 
 .intro .img-container {
@@ -115,28 +115,22 @@ header .right nav ul li a:hover::after {
     height: 80%;
 }
 
-@media screen and (max-width: 2200px) {
-    .intro .text-container .content .text {
-        font-size: 90px;
-    }
-
-    .intro .text-container .content .text div {
-        font-size: 55px;
-    }
-}
-
 /* --- PROFILES --- */
 .profile-container {
     margin-top: 80px;
 }
 
-.profile-container .col,
-.profile-container .profile-class {
-    width: 320px;
-    height: 320px;
+.profile-container .col {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-container .profile-class {
+    width: 300px;
+    height: 300px;
     border-radius: 30px;
     background: var(--gray);
 }
@@ -149,4 +143,49 @@ header .right nav ul li a:hover::after {
 
 .profile-container .img-col img {
     width: 100%;
+}
+
+.profile-container .img-col img.star {
+    margin: 64px;
+}
+
+/* --- SLIDER --- */
+.swiper-container {
+    overflow: hidden;
+}
+
+.swiper-slide {
+    width: auto !important;
+}
+
+/* --- TEACHERS --- */
+.teachers .teacher {
+    background: var(--gray);
+    border-radius: 30px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}
+
+.teachers .teacher .text {
+    min-height: 74px;
+    margin-bottom: 35px;
+    background: var(--m-primary);
+    padding-left: 64px;
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+    clip-path: path("M10.3072 29.4182C-5.27517 23.165 -0.800514 0 15.9897 0H287V74H27.3787C15.6781 74 13.8584 57.1764 25.2883 54.6745V54.6745C34.6919 52.6161 35.7725 39.6374 26.8388 36.0523L10.3072 29.4182Z");
+}
+
+.teachers .teacher .text div {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: right;
+}
+
+.teachers .teacher .text.odd {
+    background: var(--m-secondary);
 }

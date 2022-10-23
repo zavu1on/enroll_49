@@ -24,6 +24,11 @@
   border: 6px solid var(--dark);
 }
 
+::selection,
+::-moz-selection {
+    background: var(--m-secondary);
+}
+
 * {
     font-family: 'Fira Sans', sans-serif;
     font-weight: 400;
@@ -49,9 +54,9 @@ body {
 }
 
 .btn {
-    padding: 14px 28px;
+    padding: 12px 28px;
     background: var(--gray);
-    font-size: 30px;
+    font-size: 25px;
     border-radius: 20px;
     margin-left: 35px;
 }
@@ -68,7 +73,7 @@ body {
     height: 0;
     border: 1px solid var(--white);
     position: relative;
-    margin: 32px 0;
+    margin: 120px 0 32px;
 }
 
 .delimiter::after {
@@ -91,27 +96,42 @@ body {
 }
 
 .container {
-    margin: 0 180px;
+    margin: 0 200px;
 }
 
 h2 {
-    font-size: 75px;
+    font-size: 65px;
     font-weight: 500;
-    text-align: right;
+    margin-bottom: 60px;
 }
 
-h2.right span {
+h2 span {
     font-weight: 500;
     position: relative;
 }
 
-h2.right span::after {
+h2 span::after {
     content: '';
     width: 100%;
     height: 1px;
-    background: var(--m-secondary);
-    border: 1px solid #6060e2;
+    background: var(--gray);
+    border: 1px solid var(--gray);
     position: absolute;
     bottom: -2px;
     left: 0;
+}
+
+h2.right {
+    text-align: right;
+}
+
+h2.right span::after {
+    background: var(--m-secondary);
+    border-color: var(--m-secondary);
+    left: 0;
+}
+
+h2.left span::after {
+    background: var(--m-primary);
+    border-color: var(--m-primary);
 }
