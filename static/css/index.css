@@ -149,15 +149,6 @@ header .right nav ul li a:hover::after {
     margin: 64px;
 }
 
-/* --- SLIDER --- */
-.swiper-container {
-    overflow: hidden;
-}
-
-.swiper-slide {
-    width: auto !important;
-}
-
 /* --- TEACHERS --- */
 .teachers .teacher {
     background: var(--gray);
@@ -177,15 +168,43 @@ header .right nav ul li a:hover::after {
     padding-right: 8px;
     display: flex;
     align-items: center;
-    clip-path: path("M10.3072 29.4182C-5.27517 23.165 -0.800514 0 15.9897 0H287V74H27.3787C15.6781 74 13.8584 57.1764 25.2883 54.6745V54.6745C34.6919 52.6161 35.7725 39.6374 26.8388 36.0523L10.3072 29.4182Z");
+    clip-path: path("M9.78315 29.4752C-5.50849 22.8257 -0.760368 0 15.9145 0H265V74H25.7561C14.1322 74 12.185 57.353 23.495 54.6703V54.6703C32.6581 52.497 33.7769 39.9087 25.1408 36.1534L9.78315 29.4752Z");
 }
 
 .teachers .teacher .text div {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
     text-align: right;
 }
 
 .teachers .teacher .text.odd {
     background: var(--m-secondary);
+}
+
+/* --- TEXT BLOCKS --- */
+.text-blocks {
+    margin: 0 300px;
+}
+
+.text-blocks .text-block {
+    margin-top: 100px;
+}
+
+.text-blocks .text-block:first-child {
+    margin-top: 0;
+}
+
+.text-blocks .text-block h3 {
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.text-blocks .text-block p {
+    margin-top: 8px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+#statistics .list-block {
+    margin-top: 100px;
 }

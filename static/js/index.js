@@ -17,9 +17,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     })
 
+    new Swiper('.statistics', {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        initialSlide: 0,
+        centeredSlides: true,
+        loop: true,
+        speed: 800,
+        // loopedSlides: 3,
+
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        }
+    })
+
     const profileContainer = document.querySelector('.profile-container')
     const texts = document.querySelectorAll('.teachers .teacher .text')
     const ice = document.querySelector('#ice')
+    const smoothLinks = document.querySelectorAll('a[href^="#"]')
 
     texts.forEach((el, idx) => {
         if (idx % 2 === 0) {
@@ -36,4 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Стопапупа')
         }
     })
+
+     for (let smoothLink of smoothLinks) {
+        smoothLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            const id = smoothLink.getAttribute('href')
+
+            document.querySelector(id).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+            })
+        })
+    }
 })

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
 @import url('./ellipse.css');
 @import url('./grid.css');
 
@@ -69,6 +70,24 @@ body {
     background: var(--m-secondary);
 }
 
+.btn.outline {
+    background: transparent;
+    border: 3px solid var(--gray);
+    transition: border 0.5s;
+}
+
+.btn.outline:hover {
+    border: 3px solid transparent !important;
+}
+
+.btn.outline.primary {
+    border-color: var(--m-primary);
+}
+
+.btn.outline.secondary {
+    border-color: var(--m-secondary);
+}
+
 .delimiter {
     height: 0;
     border: 1px solid var(--white);
@@ -134,4 +153,113 @@ h2.right span::after {
 h2.left span::after {
     background: var(--m-primary);
     border-color: var(--m-primary);
+}
+
+.list-block {
+    display: flex;
+}
+
+.list-container {
+    flex: 1;
+}
+
+.list-container .list {
+    width: 0;
+    height: 33%;
+    border: 3px solid var(--gray);
+    position: relative;
+}
+
+.list-container .list:nth-child(1)::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -8px;
+    width: 16px;
+    height: 64px;
+    border-radius: 30px;
+    background: var(--gray);
+}
+
+.list-container .list:nth-child(2)::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -9px;
+    width: 18px;
+    height: 18px;
+    border-radius: 30px;
+    background: var(--gray);
+}
+
+.list-container .list:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -9px;
+    width: 18px;
+    height: 18px;
+    border-radius: 30px;
+    background: var(--gray);
+}
+
+.list-container .list:nth-child(3)::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: -8px;
+    width: 16px;
+    height: 64px;
+    background: var(--gray);
+}
+
+.list-container .list .text {
+    position: absolute;
+    top: -6px;
+    right: 24px;
+    font-size: 60px;
+    font-weight: 500;
+    color: var(--m-secondary) !important;
+}
+
+.list-container .list.primary {
+    border-color: var(--m-primary);
+}
+
+.list-container .list.secondary {
+    border-color: var(--m-secondary);
+}
+
+.list-container .list.primary::after,
+.list-container .list.primary::before {
+    background: var(--m-primary);
+}
+
+.list-container .list.secondary::after,
+.list-container .list.secondary::before {
+    background: var(--m-secondary);
+}
+
+.swiper-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-button-next {
+    right: 0;
+}
+
+.swiper-button-next img {
+    transform: rotate(180deg);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    content: "";
 }

@@ -4,10 +4,6 @@
 <head>
     {% include 'include/head.html' %}
     <link rel="stylesheet" href="{% static "css/index.css" %}">
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
-    />
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <title>Лицей 49. Путь в успешное будущее</title>
 </head>
@@ -89,56 +85,197 @@
         </div>
     </div>
     <div class="delimiter secondary"></div>
-    <div class="container">
+    <div class="container" id="teachers">
         <h2 class="left"><span>Кафедра</span> учителей</h2>
         <div class="swiper-container teachers">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="teacher">
-                    <div class="text">
-                        <div>Милорадова О.В. 1<br>Русский язык</div>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="teacher">
+                        <div class="text">
+                            <div>Милорадова О.В. 1<br>Русский язык</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="teacher">
-                    <div class="text">
-                        <div>Милорадова О.В. 2<br>Русский язык</div>
+                <div class="swiper-slide">
+                    <div class="teacher">
+                        <div class="text">
+                            <div>Милорадова О.В. 2<br>Русский язык</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="teacher">
-                    <div class="text">
-                        <div>Милорадова О.В. 3<br>Русский язык</div>
+                <div class="swiper-slide">
+                    <div class="teacher">
+                        <div class="text">
+                            <div>Милорадова О.В. 3<br>Русский язык</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="teacher">
-                    <div class="text">
-                        <div>Милорадова О.В. 4<br>Русский язык</div>
+                <div class="swiper-slide">
+                    <div class="teacher">
+                        <div class="text">
+                            <div>Милорадова О.В. 4<br>Русский язык</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="teacher">
-                    <div class="text">
-                        <div>Милорадова О.В. 5<br>Русский язык</div>
+                <div class="swiper-slide">
+                    <div class="teacher">
+                        <div class="text">
+                            <div>Милорадова О.В. 5<br>Русский язык</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="teacher">
-                    <div class="text">
-                        <div>Милорадова О.В. 6<br>Русский язык</div>
+                <div class="swiper-slide">
+                    <div class="teacher">
+                        <div class="text">
+                            <div>Милорадова О.В. 6<br>Русский язык</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
     <div class="delimiter primary"></div>
+    <div class="container text-blocks" id="instructions">
+        <h2 class="right"><span>Как</span> поступить</h2>
+        <div class="row list-block">
+            <div class="col s1 list-container">
+                <div class="list primary"><div class="text">01</div></div>
+                <div class="list primary"><div class="text">02</div></div>
+                <div class="list primary"><div class="text">03</div></div>
+            </div>
+            <div class="col s11">
+                <div class="text-block">
+                    <h3>Вам понадобится</h3>
+                    <p>
+                        молоко 500 мл, яйца 3 шт.
+                        ,мука 200 г
+                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
+                        ,сахар 30 г (2 ст. ложки)
+                        ,соль 2-3 г (1/2 ч. ложки)
+                    </p>
+                </div>
+                 <div class="text-block">
+                    <h3>Вам понадобится</h3>
+                    <p>
+                        молоко 500 мл, яйца 3 шт.
+                        ,мука 200 г
+                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
+                        ,сахар 30 г (2 ст. ложки)
+                        ,соль 2-3 г (1/2 ч. ложки)
+                    </p>
+                </div>
+                 <div class="text-block">
+                    <h3>Вам понадобится</h3>
+                    <p>
+                        молоко 500 мл, яйца 3 шт.
+                        ,мука 200 г
+                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
+                        ,сахар 30 г (2 ст. ложки)
+                        ,соль 2-3 г (1/2 ч. ложки)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="delimiter secondary"></div>
+    <div class="container text-blocks" id="statistics">
+        <h2 class="left"><span>Статистика</span> прошлого года</h2>
+        <div class="swiper-container statistics">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="btn primary outline ellipse-btn">
+                        Инженерный класс 1
+                        <div class="ellipse-container">
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="btn primary outline ellipse-btn">
+                        Инженерный класс 2
+                        <div class="ellipse-container">
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="btn primary outline ellipse-btn">
+                        Инженерный класс 3
+                        <div class="ellipse-container">
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="btn primary outline ellipse-btn">
+                        Инженерный класс 4
+                        <div class="ellipse-container">
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="btn primary outline ellipse-btn">
+                        Инженерный класс 5
+                        <div class="ellipse-container">
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-prev"><img src="{% static "image/arrow.svg" %}" alt="arrow"></div>
+            <div class="swiper-button-next"><img src="{% static "image/arrow.svg" %}" alt="arrow"></div>
+        </div>
+        <div class="row list-block">
+            <div class="col s1 list-container">
+                <div class="list secondary"></div>
+                <div class="list secondary"></div>
+                <div class="list secondary"></div>
+            </div>
+            <div class="col s11">
+                <div class="text-block">
+                    <h3>Вам понадобится</h3>
+                    <p>
+                        молоко 500 мл, яйца 3 шт.
+                        ,мука 200 г
+                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
+                        ,сахар 30 г (2 ст. ложки)
+                        ,соль 2-3 г (1/2 ч. ложки)
+                    </p>
+                </div>
+                <div class="text-block">
+                    <h3>Вам понадобится</h3>
+                    <p>
+                        молоко 500 мл, яйца 3 шт.
+                        ,мука 200 г
+                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
+                        ,сахар 30 г (2 ст. ложки)
+                        ,соль 2-3 г (1/2 ч. ложки)
+                    </p>
+                </div>
+                <div class="text-block">
+                    <h3>Вам понадобится</h3>
+                    <p>
+                        молоко 500 мл, яйца 3 шт.
+                        ,мука 200 г
+                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
+                        ,сахар 30 г (2 ст. ложки)
+                        ,соль 2-3 г (1/2 ч. ложки)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="{% static "js/index.js" %}"></script>
 </body>
 </html>
