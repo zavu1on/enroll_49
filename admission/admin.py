@@ -99,9 +99,9 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
                 'father_fio',
                 'father_phone',
                 'father_address',
-                'mothers_fio',
-                'mothers_phone',
-                'mothers_address',
+                'mother_fio',
+                'mother_phone',
+                'mother_address',
             )
         }),
         ('Cведения об результатах обучения ребёнка', {
