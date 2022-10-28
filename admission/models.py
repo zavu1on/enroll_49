@@ -50,18 +50,18 @@ class EnrollApplication(models.Model):
     fio = models.CharField('ФИО', max_length=300)
     birthday = models.DateField('Дата рождения')
     address = models.CharField('Адрес места жительства', max_length=500)
-    phone = models.CharField('Контактный телефон', max_length=100, unique=True)
+    phone = models.CharField('Контактный номер телефона', max_length=100, unique=True)
     email = models.CharField('Контактный адрес электронной почты', max_length=300, unique=True)
     passport_seria = models.PositiveIntegerField('Серия паспорта', validators=[validators.validate_password_seria])
     passport_number = models.PositiveIntegerField('Номер паспорта', validators=[validators.validate_password_number])
 
     # сведения о родителях
-    father_fio = models.CharField('ФИО отца', max_length=300)
-    father_phone = models.CharField('Контактный телефон отца', max_length=100)
-    father_address = models.CharField('Адрес места жительства отца', max_length=500)
-    mother_fio = models.CharField('ФИО матери', max_length=300)
-    mother_phone = models.CharField('Контактный телефон матери', max_length=100)
-    mother_address = models.CharField('Адрес места жительства матери', max_length=500)
+    father_fio = models.CharField('ФИО отца', max_length=300, null=True, blank=True)
+    father_phone = models.CharField('Контактный номер телефона отца', max_length=100, null=True, blank=True)
+    father_address = models.CharField('Адрес места жительства отца', max_length=500, null=True, blank=True)
+    mother_fio = models.CharField('ФИО матери', max_length=300, null=True, blank=True)
+    mother_phone = models.CharField('Контактный номер телефона матери', max_length=100, null=True, blank=True)
+    mother_address = models.CharField('Адрес места жительства матери', max_length=500, null=True, blank=True)
 
     # данные о результатах обучения ребенка
     certificate_average_score = models.FloatField('Средний балл аттестата', validators=[validators.validate_mark])
@@ -99,7 +99,7 @@ class EnrollApplication(models.Model):
         'Оценка за экзамен по выбору № 2',
         validators=[validators.validate_mark]
     )
-    profile_classes = models.ManyToManyField(ProfileClass, verbose_name='Профильные классы')
+    profile_class = models.ForeignKey(ProfileClass, models.SET_NULL, verbose_name='Профильный класс', null=True)
 
     # файлы
     passport_file = models.FileField('Паспорт', upload_to='passport/')
