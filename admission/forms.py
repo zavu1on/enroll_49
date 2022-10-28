@@ -1,9 +1,11 @@
 from django import forms
+from captcha.fields import ReCaptchaField
 from .models import EnrollApplication
 from .validators import validate_password_exists
 
 
 class EnrollForm(forms.ModelForm):
+    captcha = ReCaptchaField(label=False)
     achievements = forms.FileField(label='Индивидуальные достижения', widget=forms.FileInput(attrs={
         'multiple': True
     }))
@@ -19,6 +21,7 @@ class EnrollForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
+    captcha = ReCaptchaField(label=False)
     passport = forms.CharField(
         max_length=11,
         min_length=11,

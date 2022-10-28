@@ -67,6 +67,10 @@ header .right nav ul li a:hover::after {
     bottom: -5px;
 }
 
+header .right .profile-link {
+    margin-left: 35px;
+}
+
 /* --- INTRO --- */
 .intro {
     display: flex;
@@ -100,7 +104,7 @@ header .right nav ul li a:hover::after {
 .intro .text-container .content .btn {
     margin-left: 0;
     margin-top: 80px;
-    padding: 12px 40px;
+    padding: 14px 40px;
 }
 
 .intro .img-container {
@@ -197,14 +201,22 @@ header .right nav ul li a:hover::after {
 .text-blocks .text-block h3 {
     font-size: 50px;
     font-weight: 500;
+    margin-bottom: 16px;
 }
 
-.text-blocks .text-block p {
+.text-blocks .text-block p,
+.text-blocks .text-block li {
     margin-top: 8px;
     font-size: 25px;
     font-weight: 500;
+    line-height: 40px;
 }
 
-#statistics .list-block {
+.instructions .enroll-link {
+    margin-top: 64px;
+    padding: 14px 40px;
+}
+
+.statistics .list-block {
     margin-top: 100px;
 }

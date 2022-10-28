@@ -21,7 +21,7 @@
                     <li><a href="#statistics">Статистика</a></li>
                 </ul>
             </nav>
-            <a href="/profile/" class="btn primary ellipse-btn">
+            <a href="{% url "profile" %}" class="btn primary ellipse-btn profile-link">
                 Личный кабинет
                 <div class="ellipse-container">
                     <div class="ellipse secondary"></div>
@@ -92,7 +92,7 @@
                 <div class="swiper-slide">
                     <div class="teacher">
                         <div class="text">
-                            <div>Милорадова О.В. 1<br>Русский язык</div>
+                            <div>Милорадова О.В. 1 dsfdgfdg<br>Русский язык</div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
         </div>
     </div>
     <div class="delimiter primary"></div>
-    <div class="container text-blocks" id="instructions">
+    <div class="container text-blocks instructions" id="instructions">
         <h2 class="right"><span>Как</span> поступить</h2>
         <div class="row list-block">
             <div class="col s1 list-container">
@@ -145,40 +145,42 @@
             </div>
             <div class="col s11">
                 <div class="text-block">
-                    <h3>Вам понадобится</h3>
+                    <h3>Подготовь документы в электронном виде</h3>
                     <p>
-                        молоко 500 мл, яйца 3 шт.
-                        ,мука 200 г
-                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
-                        ,сахар 30 г (2 ст. ложки)
-                        ,соль 2-3 г (1/2 ч. ложки)
+                        &#8226; Паспорт с пропиской<br>
+                        &#8226; Аттестат за 9 класс<br>
+                        &#8226; Итоговые оценки по всем предметам<br>
+                        &#8226; Результаты ОГЭ<br>
                     </p>
                 </div>
                  <div class="text-block">
-                    <h3>Вам понадобится</h3>
+                    <h3>Заполни форму</h3>
                     <p>
-                        молоко 500 мл, яйца 3 шт.
-                        ,мука 200 г
-                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
-                        ,сахар 30 г (2 ст. ложки)
-                        ,соль 2-3 г (1/2 ч. ложки)
+                        Вместе с родителями заполни форму для подачи заявления в 10 класс.<br>
+                        Укажи информацию о своей успеваимости в школе и результатах ОГЭ.<br>
+                        Не забудь прикрепить индивидуальные достижения и выбрать профильный класс, в котором ты хотел бы учиться.
                     </p>
                 </div>
                  <div class="text-block">
-                    <h3>Вам понадобится</h3>
+                    <h3>Жди результатов</h3>
                     <p>
-                        молоко 500 мл, яйца 3 шт.
-                        ,мука 200 г
-                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
-                        ,сахар 30 г (2 ст. ложки)
-                        ,соль 2-3 г (1/2 ч. ложки)
+                        Отслеживай статус заявки и сообщения от приёмной комиссии в личном кабинете.<br>
+                        Когда появяться результаты отбора, мы сообщим тебе по электронной пойти или по телефону.
                     </p>
                 </div>
+                <a href="{% url "enroll" %}" class="btn primary ellipse-btn enroll-link">
+                    Подать заявку
+                    <div class="ellipse-container">
+                        <div class="ellipse secondary"></div>
+                        <div class="ellipse secondary"></div>
+                        <div class="ellipse secondary"></div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
     <div class="delimiter secondary"></div>
-    <div class="container text-blocks" id="statistics">
+    <div class="container text-blocks statistics" id="statistics">
         <h2 class="left"><span>Статистика</span> прошлого года</h2>
         <div class="swiper-container statistics">
             <div class="swiper-wrapper">

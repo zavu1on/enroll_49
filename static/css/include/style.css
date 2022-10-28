@@ -59,7 +59,6 @@ body {
     background: var(--gray);
     font-size: 25px;
     border-radius: 20px;
-    margin-left: 35px;
 }
 
 .btn.primary {

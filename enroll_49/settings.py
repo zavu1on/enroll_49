@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
     'admission',
 ]
 
@@ -126,6 +127,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 CSV_PATH = BASE_DIR / 'media'
+
+# reCAPTCHA
+RECAPTCHA_PUBLIC_KEY = '6LdEo78iAAAAAFsXNo0YU2RvXsKeUHNW1ZXEtwY2'
+RECAPTCHA_PRIVATE_KEY = '6LdEo78iAAAAAJ1cWxYqqDo_0qVygZw3dRldg7ZG'
+RECAPTCHA_REQUIRED_SCORE = 0.85
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
