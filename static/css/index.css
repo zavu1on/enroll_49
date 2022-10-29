@@ -99,6 +99,9 @@ header .right .profile-link {
 .intro .text-container .content .text div {
     font-size: 60px;
     margin-top: -10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .intro .text-container .content .btn {
@@ -179,6 +182,9 @@ header .right .profile-link {
     font-size: 22px;
     font-weight: 500;
     text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .teachers .teacher .text.odd {
@@ -204,8 +210,7 @@ header .right .profile-link {
     margin-bottom: 16px;
 }
 
-.text-blocks .text-block p,
-.text-blocks .text-block li {
+.text-blocks .text-block p {
     margin-top: 8px;
     font-size: 25px;
     font-weight: 500;
@@ -217,6 +222,387 @@ header .right .profile-link {
     padding: 14px 40px;
 }
 
+#statistics {
+    position: relative;
+}
+
 .statistics .list-block {
     margin-top: 100px;
+}
+
+/* --- ADAPTIVE ---  */
+@media screen and (max-width: 1720px) {
+    .teachers .teacher .text {
+        padding-left: 48px;
+    }
+
+    .teachers .teacher .text div {
+        font-size: 20px;
+    }
+
+    .profile-container .col,
+    .profile-container .profile-class,
+    .teachers .teacher {
+        width: 260px;
+        height: 260px;
+    }
+
+    .profile-statistic {
+        font-size: 18px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: 164px;
+        bottom: 0;
+    }
+}
+
+@media screen and (max-width: 1530px) {
+    header .right .profile-link {
+        margin-left: 0;
+    }
+
+    .intro .text-container .content .text {
+        font-size: 75px;
+    }
+
+    .intro .text-container .content .text div {
+        font-size: 40px;
+    }
+
+    .intro .img-container img {
+        width: 70%;
+        height: 70%;
+    }
+
+    .profile-container .col,
+    .profile-container .profile-class,
+    .teachers .teacher {
+        width: 220px;
+        height: 220px;
+    }
+
+    .teachers .teacher .text {
+        padding-left: 38px;
+        clip-path: path("M8.47712 23.7909C-4.50813 19.2126 -1.22036 0 12.5484 0H264V60H23.948C14.3662 60 13.046 46.1445 22.4553 44.3349V44.3349C30.374 42.8121 31.1958 31.8009 23.5908 29.1196L8.47712 23.7909Z");
+        min-height: 60px;
+    }
+
+    .teachers .teacher .text div {
+        font-size: 18px;
+    }
+
+    .text-blocks .text-block h3 {
+        font-size: 42px;
+    }
+
+    .text-blocks .text-block p {
+        font-size: 20px;
+    }
+
+    .profile-statistic {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .swiper-button-next {
+        right: -16px;
+    }
+
+    .swiper-button-prev {
+        left: -16px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: 144px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .intro .img-container img {
+        width: 60%;
+        height: 60%;
+    }
+
+    .intro .text-container .content {
+        bottom: 40px;
+    }
+
+    .profile-container .col,
+    .profile-container .profile-class,
+    .teachers .teacher {
+        width: 200px;
+        height: 200px;
+    }
+
+    .teachers .teacher .text {
+        padding-left: 30px;
+        clip-path: path("M7.29207 19.7714C-3.89188 16.4854 -1.5202 0 10.1365 0H263V50H22.4727C14.3865 50 13.4492 38.2289 21.4335 36.9493V36.9493C28.3425 35.842 28.9589 26.1374 22.2455 24.1649L7.29207 19.7714Z");
+        min-height: 50px;
+        margin-bottom: 30px;
+    }
+
+    .teachers .teacher .text div {
+        font-size: 17px;
+    }
+
+    .text-blocks .text-block h3 {
+        font-size: 42px;
+    }
+
+    .text-blocks .text-block p {
+        font-size: 20px;
+    }
+
+    .profile-container .img-col img.star {
+        margin: 30px;
+    }
+
+    .swiper-button-next {
+        right: -30px;
+    }
+
+    .swiper-button-prev {
+        left: -30px;
+    }
+
+    header .right nav {
+        display: none;
+    }
+
+    header .logo-container .title {
+        font-size: 28px;
+    }
+
+    header .right .profile-link {
+        font-size: 20px;
+    }
+
+    header .logo-container .logo {
+        width: 24px;
+        height: 48px;
+    }
+
+    .text-blocks {
+        margin: 0 180px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .intro .text-container .content .text {
+        font-size: 54px;
+    }
+
+    .intro .text-container .content .text div {
+        font-size: 30px;
+        margin-top: 4px;
+    }
+
+    .profile-container .col,
+    .profile-container .profile-class,
+    .teachers .teacher {
+        width: 160px;
+        height: 160px;
+    }
+
+    .teachers .teacher .text {
+        clip-path: path("M7.25207 17.8222C-2.61951 14.5793 -0.286116 0 10.1045 0H213V45H19.6043C12.3813 45 11.4503 34.5266 18.5601 33.2526V33.2526C24.6117 32.1682 25.2044 23.7197 19.3636 21.8009L7.25207 17.8222Z");
+        min-height: 46px;
+        margin-bottom: 24px;
+    }
+
+    .teachers .teacher .text div {
+        font-size: 14px;
+    }
+
+    .text-blocks .text-block h3 {
+        font-size: 30px;
+    }
+
+    .profile-container .img-col img.star {
+        margin: 20px;
+    }
+
+    .text-blocks {
+        margin: 0 100px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        top: 132px;
+    }
+
+    header .right .profile-link {
+        font-size: 18px;
+        padding: 8px 20px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .intro .img-container img {
+        visibility: hidden;
+    }
+
+    .profile-statistic {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .profile-container .profile-class {
+        min-width: 120px;
+        min-height: 120px !important;
+    }
+
+    .teachers .teacher {
+        min-width: 160px;
+        height: 160px !important;
+    }
+
+    .teachers .teacher .text {
+        display: block;
+        clip-path: none;
+        min-height: initial;
+        width: 100%;
+        padding: 0;
+        background: rgba(231, 75, 0, 75%);
+    }
+
+    .teachers .teacher .text.odd {
+        background: rgba(96, 96, 226, 75%);
+    }
+
+    .teachers .teacher .text div {
+        font-size: 14px;
+        padding: 4px;
+    }
+
+    .intro .text-container .content {
+        bottom: 0;
+    }
+
+    header {
+        padding: 0 40px;
+    }
+
+    .intro {
+        padding: 0 80px;
+        margin-top: 0;
+    }
+
+    .intro .text-container .content .btn {
+        margin-top: 40px;
+    }
+
+    .profile-container .img-col img.star {
+        margin: 20px;
+    }
+
+    .profile-statistic {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .profile-container,
+    .profile-container .col {
+        margin-top: 16px;
+    }
+
+    .profiles h2 {
+        margin-bottom: 44px;
+    }
+
+    .profiles .row {
+        margin-top: 0 !important;
+    }
+
+    header, .intro {
+        padding: 0 20px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: none;
+    }
+
+    .intro .text-container .content .text {
+        font-size: 48px;
+    }
+
+    .intro .text-container .content .text div {
+        font-size: 24px;
+    }
+
+    .intro a {
+        padding: 8px 24px !important;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .teachers .teacher .text {
+
+        clip-path: path("M7.25207 17.8222C-2.61951 14.5793 -0.286116 0 10.1045 0H213V45H19.6043C12.3813 45 11.4503 34.5266 18.5601 33.2526V33.2526C24.6117 32.1682 25.2044 23.7197 19.3636 21.8009L7.25207 17.8222Z");
+        min-height: 46px;
+        margin-bottom: 24px;
+        background: var(--m-primary);
+    }
+
+    .teachers .teacher .text.odd {
+        background: var(--m-secondary);
+    }
+
+    .teachers .teacher .text div {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .profile-container .profile-class {
+        min-width: 140px;
+        min-height: 140px !important;
+        height: 140px !important;
+    }
+
+    .intro {
+        margin-top: 80px;
+    }
+
+    .intro .text-container .content .text {
+        font-size: 42px;
+    }
+
+    .intro .text-container .content .text div {
+        font-size: 20px;
+    }
+
+    header .right .profile-link span {
+        display: none;
+    }
+
+    header .right .profile-link i {
+        display: block !important;
+    }
+
+    .statistics .list-block {
+        margin-top: 32px;
+    }
+
+    .text-blocks .text-block p {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile-statistic {
+        padding: 12px 24px;
+        font-size: 24px;
+    }
 }

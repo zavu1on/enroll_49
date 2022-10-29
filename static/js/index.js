@@ -5,16 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
         slidesPerView: 4,
         spaceBetween: 90,
         initialSlide: 0,
-        // centeredSlides: true,
         loop: true,
-        // loopedSlides: 1,
 
-        autoplay: {
-            delay: 2000,
-            disableOnInteraction: false
-        },
+        // autoplay: {
+        //     delay: 2000,
+        //     disableOnInteraction: false
+        // },
         speed: 800,
 
+        breakpoints: {
+            700: {
+                slidesPerView: 4,
+            },
+
+            500: {
+                slidesPerView: 3,
+            },
+
+            100: {
+                spaceBetween: 40,
+                slidesPerView: 2,
+            }
+        }
     })
 
     new Swiper('.statistics', {
@@ -24,7 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
         centeredSlides: true,
         loop: true,
         speed: 800,
-        // loopedSlides: 3,
+
+        breakpoints: {
+            700: {
+                slidesPerView: 3,
+            },
+
+            400: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+            },
+
+            100: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+            }
+        },
 
         navigation: {
             nextEl: '.swiper-button-next',
@@ -53,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-     for (let smoothLink of smoothLinks) {
+    for (let smoothLink of smoothLinks) {
         smoothLink.addEventListener('click', function (e) {
             e.preventDefault();
             const id = smoothLink.getAttribute('href')

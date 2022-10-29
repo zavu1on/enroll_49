@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
-@import url('./ellipse.css');
 @import url('./grid.css');
 
 :root {
@@ -47,7 +46,6 @@ a {
 html,
 body {
     width: 100%;
-    /*height: 100vh;*/
 }
 
 body {
@@ -85,6 +83,61 @@ body {
 
 .btn.outline.secondary {
     border-color: var(--m-secondary);
+}
+
+.ellipse-btn {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+.ellipse-btn:hover .ellipse {
+    transform: translateY(0) scale(2.8);
+}
+
+.ellipse-container {
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.ellipse-container .ellipse {
+    width: 34%;
+    height: 100%;
+    border-radius: 100%;
+    background: var(--gray);
+    position: absolute;
+    transform: scale(1.4) translateY(105%) translateZ(0);
+    transition: all 700ms ease;
+    z-index: -1;
+}
+
+.ellipse-container .ellipse.primary {
+    background: var(--m-primary);
+}
+
+.ellipse-container .ellipse.secondary {
+    background: var(--m-secondary);
+}
+
+.ellipse-container .ellipse:nth-child(1) {
+    left: -5%;
+}
+
+.ellipse-container .ellipse:nth-child(2) {
+    left: 34%;
+    transition-delay: 60ms;
+}
+
+.ellipse-container .ellipse:nth-child(3) {
+    left: 68%;
+    transition-delay: 25ms;
 }
 
 .delimiter {
@@ -254,6 +307,16 @@ h2.left span::after {
     right: 0;
 }
 
+.swiper-button-prev {
+    left: 0;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    top: 170px;
+    bottom: 0;
+}
+
 .swiper-button-next img {
     transform: rotate(180deg);
 }
@@ -261,4 +324,58 @@ h2.left span::after {
 .swiper-button-next:after,
 .swiper-button-prev:after {
     content: "";
+}
+
+@media screen and (max-width: 1400px) {
+    h2 {
+        font-size: 50px;
+    }
+
+    .container {
+        margin: 0 100px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    h2 {
+        font-size: 40px;
+    }
+
+    .container {
+        margin: 0 80px;
+    }
+
+    .list-container .list .text {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    h2 {
+        font-size: 40px;
+    }
+
+    .container {
+        margin: 0 50px !important;
+    }
+
+    .list-container .list .text {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    h2 {
+        font-size: 32px;
+    }
+
+    .delimiter {
+        margin-top: 32px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .container {
+        margin: 0 20px !important;
+    }
 }
