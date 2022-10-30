@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initialSlide: 0,
         loop: true,
 
-        // autoplay: {
-        //     delay: 2000,
-        //     disableOnInteraction: false
-        // },
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false
+        },
         speed: 800,
 
         breakpoints: {
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             },
 
             100: {
-                spaceBetween: 40,
+                spaceBetween: 30,
                 slidesPerView: 2,
             }
         }
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
 
             100: {
-                slidesPerView: 1,
-                slidesPerGroup: 1,
+                slidesPerView: 2,
+                slidesPerGroup: 2,
             }
         },
 

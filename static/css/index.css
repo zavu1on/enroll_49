@@ -540,15 +540,15 @@ header .right .profile-link {
         font-size: 24px;
     }
 
+    .instructions .enroll-link,
     .intro a {
-        padding: 8px 24px !important;
-        font-size: 18px;
+        font-size: 20px;
+        padding: 10px 28px !important;
     }
 }
 
 @media screen and (max-width: 500px) {
     .teachers .teacher .text {
-
         clip-path: path("M7.25207 17.8222C-2.61951 14.5793 -0.286116 0 10.1045 0H213V45H19.6043C12.3813 45 11.4503 34.5266 18.5601 33.2526V33.2526C24.6117 32.1682 25.2044 23.7197 19.3636 21.8009L7.25207 17.8222Z");
         min-height: 46px;
         margin-bottom: 24px;
@@ -567,12 +567,13 @@ header .right .profile-link {
 @media screen and (max-width: 450px) {
     .profile-container .profile-class {
         min-width: 140px;
+        max-width: 140px;
         min-height: 140px !important;
         height: 140px !important;
     }
 
     .intro {
-        margin-top: 80px;
+        margin-top: 116px;
     }
 
     .intro .text-container .content .text {
@@ -580,7 +581,7 @@ header .right .profile-link {
     }
 
     .intro .text-container .content .text div {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     header .right .profile-link span {
@@ -595,14 +596,36 @@ header .right .profile-link {
         margin-top: 32px;
     }
 
+    .text-blocks .text-block h3 {
+        font-size: 26px;
+    }
+
     .text-blocks .text-block p {
         font-size: 18px;
     }
-}
 
-@media screen and (max-width: 400px) {
-    .profile-statistic {
-        padding: 12px 24px;
-        font-size: 24px;
+    .instructions .list-container .list:nth-child(2)::after {
+        top: -60px;
+    }
+
+    .instructions .list-container .list:nth-child(2)::before {
+        top: -35px;
+    }
+
+    .instructions .list-container .list:nth-child(3)::after {
+        height: 48px;
+        top: 45px;
+    }
+
+    .text-blocks .text-block {
+      margin-top: 60px;
+    }
+
+    .profile-statistic, .instructions .enroll-link {
+        margin-top: 24px;
+    }
+
+    .statistics h2 {
+        margin-bottom: 24px;
     }
 }
