@@ -96,6 +96,7 @@ def test_data(request):
     # todo delete
     import random
     import datetime
+    from django.http.response import JsonResponse
 
     # EnrollApplication.objects.create(
     #     fio='test test test',
@@ -167,3 +168,5 @@ def test_data(request):
 
             profile_class_id=1
         )
+
+    return JsonResponse({'success': True})

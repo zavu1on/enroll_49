@@ -133,6 +133,14 @@ RECAPTCHA_PUBLIC_KEY = '6LdEo78iAAAAAFsXNo0YU2RvXsKeUHNW1ZXEtwY2'
 RECAPTCHA_PRIVATE_KEY = '6LdEo78iAAAAAJ1cWxYqqDo_0qVygZw3dRldg7ZG'
 RECAPTCHA_REQUIRED_SCORE = 0.85
 
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

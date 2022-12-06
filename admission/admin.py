@@ -3,9 +3,11 @@ import pandas
 from time import time
 from django.contrib import admin
 from django.conf import settings
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 from . import models
 from .services import calc_rating
+
 # Register your models here.
 
 admin.site.register(models.Exam)
@@ -18,20 +20,20 @@ class ExtraAchievementInline(admin.StackedInline):
     extra = 0
 
 
-@admin.action(description='Рассчитать рейтинг поступающих')
+@admin.action(description='Рассчитать рейтинг поступающих для выбранных заявление')
 def calculate_rating(modeladmin, request, queryset):
     for app in queryset.all():
         calc_rating(app)
 
 
-@admin.action(description='Обнулить рейтинг поступающих')
+@admin.action(description='Обнулить рейтинг поступающих для выбранных заявление')
 def zeroize_rating(modeladmin, request, queryset):
     for app in queryset.all():
         app.rating_place = 0
         app.save(update_fields=['rating_place'])
 
 
-@admin.action(description='Сформировать Exel')
+@admin.action(description='Сформировать Exel протокол для выбранных заявление')
 def make_exel(modeladmin, request, queryset):
     data_frame = []
 
@@ -62,6 +64,20 @@ def make_exel(modeladmin, request, queryset):
     return redirect(settings.MEDIA_URL + name)
 
 
+@admin.action(description='Оповестить поступающих о результатах отбора (для выбранных заявление)')
+def notify_applicants(modeladmin, request, queryset):
+    for app in queryset.all():
+        app: models.EnrollApplication
+
+        send_mail(
+            f'Результаты отбора в 10-й {app.profile_class.name} класс лицея № 49!',
+            '',  # todo написать текст
+            settings.EMAIL_HOST_USER,
+            ['to@example.com'],
+            fail_silently=False,
+        )
+
+
 @admin.register(models.EnrollApplication)
 class EnrollApplicationAdmin(admin.ModelAdmin):
     list_display = ('id', 'fio', 'profile_class', 'status', 'rating_place')
@@ -73,7 +89,7 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
     search_fields = ('fio',)
     search_help_text = 'Поиск по ФИО'
     inlines = (ExtraAchievementInline,)
-    actions = [calculate_rating, zeroize_rating, make_exel]
+    actions = [calculate_rating, zeroize_rating, make_exel, notify_applicants]
     fieldsets = (
         ('Сведения о ребёнке', {
             'fields': (
@@ -90,7 +106,7 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
         ('Cведения о родителях ребёнка', {
             'fields': (
                 'father_fio',
-                'father_phone',                'father_address',
+                'father_phone', 'father_address',
                 'mother_fio',
                 'mother_phone',
                 'mother_address',
