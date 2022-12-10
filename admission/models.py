@@ -1,6 +1,11 @@
+import logging
 from django.db import models
+from django.conf import settings
+from django.core.mail import send_mail
 from . import validators
 # Create your models here.
+
+logger = logging.getLogger(__name__)
 
 
 class Exam(models.Model):
@@ -137,6 +142,23 @@ class EnrollApplication(models.Model):
 
     def __str__(self):
         return self.fio
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        prev_app = EnrollApplication.objects.get(pk=self.id)
+
+        if self.message.strip() and prev_app.message != self.message:
+            try:
+                send_mail(
+                    'Поступление в 10 класс лицея № 49. Новое сообщение от приемной комиссии',
+                    '',
+                    settings.EMAIL_HOST_USER,
+                    [self.email],
+                    html_message=f'Приёмная комиссия написал Вам сообщение, по поводу Вашей заявки. Также посмотреть сообщение можно в личном кабинете.\n\n"{self.message}"\n\nКонтакты:\n...'  # todo дописать контакты
+                )
+            except:
+                logger.error(f'Ошибка во время отправки сообщения на почту {self.email}')
+
+        super().save(force_insert, force_update, using, update_fields)
 
     class Meta:
         verbose_name = 'Заявление на поступление в лицей'

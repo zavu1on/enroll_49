@@ -1,3 +1,4 @@
+import logging
 import sys
 import pandas
 from time import time
@@ -7,12 +8,13 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from . import models
 from .services import calc_rating
-
 # Register your models here.
 
 admin.site.register(models.Exam)
 admin.site.register(models.ProfileClass)
 admin.site.register(models.ExtraAchievement)
+
+logger = logging.getLogger(__name__)
 
 
 class ExtraAchievementInline(admin.StackedInline):
@@ -69,13 +71,15 @@ def notify_applicants(modeladmin, request, queryset):
     for app in queryset.all():
         app: models.EnrollApplication
 
-        send_mail(
-            f'Результаты отбора в 10-й {app.profile_class.name} класс лицея № 49!',
-            '',  # todo написать текст
-            settings.EMAIL_HOST_USER,
-            ['to@example.com'],
-            fail_silently=False,
-        )
+        try:
+            send_mail(
+                f'Результаты отбора в 10-й {app.profile_class.name} класс лицея № 49!',
+                '',  # todo написать текст
+                settings.EMAIL_HOST_USER,
+                [app.email],
+            )
+        except:
+            logger.error(f'Ошибка во время отправки сообщения на почту {app.email}')
 
 
 @admin.register(models.EnrollApplication)

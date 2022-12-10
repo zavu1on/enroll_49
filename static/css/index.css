@@ -196,23 +196,23 @@ header .right .profile-link {
     margin: 0 300px;
 }
 
-.text-blocks .text-block {
-    margin-top: 100px;
+.text-blocks .text-block .h100 {
+    height: 100px;
 }
 
-.text-blocks .text-block:first-child {
-    margin-top: 0;
+.text-blocks .text-block:last-child .h100 {
+    height: 0;
 }
 
 .text-blocks .text-block h3 {
-    font-size: 50px;
+    font-size: 42px;
     font-weight: 500;
     margin-bottom: 16px;
 }
 
 .text-blocks .text-block p {
     margin-top: 8px;
-    font-size: 25px;
+    font-size: 24px;
     font-weight: 500;
     line-height: 40px;
 }
