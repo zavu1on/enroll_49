@@ -55,7 +55,7 @@ class ProfileView(TemplateView):
         if not request.session.get('auth'):
             return redirect('login')
 
-        seria, number = request.session.get('auth').split()
+        seria, number = request.session.get('auth').split('-')
         try:
             EnrollApplication.objects.get(passport_seria=seria, passport_number=number)
         except EnrollApplication.DoesNotExist:
@@ -65,7 +65,7 @@ class ProfileView(TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        seria, number = self.request.session.get('auth').split()
+        seria, number = self.request.session.get('auth').split('-')
         enroll_app = EnrollApplication.objects.get(passport_seria=seria, passport_number=number)
 
         ctx['fio'] = enroll_app.fio

@@ -18,7 +18,7 @@ def validate_password_number(value: int):
 
 
 def validate_password_exists(value: str):
-    seria, number = value.split()
+    seria, number = value.split('-')
 
     try:
         models.EnrollApplication.objects.get(passport_seria=seria, passport_number=number)

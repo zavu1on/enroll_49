@@ -1,0 +1,26 @@
+<header>
+    <div class="logo-container">
+        <div class="logo"></div>
+        <div class="title">Лицей 49</div>
+    </div>
+    <div class="right">
+        {% if request.path == '/' %}
+            <nav>
+                <ul>
+                    <li><a href="#profiles">Классы</a></li>
+                    <li><a href="#teachers">Кафедра</a></li>
+                    <li><a href="#statistics">Статистика</a></li>
+                </ul>
+            </nav>
+        {% endif %}
+        <a href="{% url "profile" %}" class="btn primary ellipse-btn profile-link">
+            <span>Личный кабинет</span>
+            <i class="fa-solid fa-right-to-bracket" style="display: none"></i>
+            <div class="ellipse-container">
+                <div class="ellipse secondary"></div>
+                <div class="ellipse secondary"></div>
+                <div class="ellipse secondary"></div>
+            </div>
+        </a>
+    </div>
+</header>

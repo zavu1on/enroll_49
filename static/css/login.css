@@ -1,0 +1,29 @@
+@import url('include/style.css');
+
+.card-container {
+    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    background: #494949;
+    border-radius: 30px;
+    padding: 46px 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.g-recaptcha {
+    margin-top: 32px;
+}
+
+button {
+    margin-top: 80px;
+}

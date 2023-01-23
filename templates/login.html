@@ -1,15 +1,32 @@
 <!doctype html>
 <html lang="ru">
+{% load static %}
 <head>
     {% include 'include/head.html' %}
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+    <title>Авторизация</title>
 </head>
 <body>
-    <h1>Авторизация</h1>
+{% include 'include/header.html' %}
+<div class="card-container">
     <form method="post">
+        <h1>Авторизация</h1>
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
+        {{ form.passport }}
+        {{ form.captcha }}
+
+        <button type="submit" class="btn secondary ellipse-btn">
+            Войти
+            <div class="ellipse-container">
+                <div class="ellipse primary"></div>
+                <div class="ellipse primary"></div>
+                <div class="ellipse primary"></div>
+            </div>
+        </button>
+        {{ form.errors.passport }}
     </form>
+</div>
+<script src="https://unpkg.com/imask"></script>
+<script src="{% static "js/login.js" %}"></script>
 </body>
 </html>

@@ -27,6 +27,7 @@ class LoginForm(forms.Form):
         min_length=11,
         validators=[validate_password_exists],
         widget=forms.TextInput(attrs={
-            'label': 'Серия и номер паспорта'
+            'placeholder': 'Паспорт',
+            'class': 'mt-40'
         })
     )

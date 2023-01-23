@@ -1,37 +1,14 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="ru">
-<head>
-    {% include 'include/head.html' %}
-    <link rel="stylesheet" href="{% static "css/index.css" %}">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-    <title>Лицей 49. Путь в успешное будущее</title>
-</head>
+    <head>
+        {% include 'include/head.html' %}
+        <link rel="stylesheet" href="{% static "css/index.css" %}">
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+        <title>Лицей 49. Путь в успешное будущее</title>
+    </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <div class="logo"></div>
-            <div class="title">Лицей 49</div>
-        </div>
-        <div class="right">
-            <nav>
-                <ul>
-                    <li><a href="#profiles">Профили</a></li>
-                    <li><a href="#teachers">Кафедра</a></li>
-                    <li><a href="#statistics">Статистика</a></li>
-                </ul>
-            </nav>
-            <a href="{% url "profile" %}" class="btn primary ellipse-btn profile-link">
-                <span>Личный кабинет</span>
-                <i class="fa-solid fa-right-to-bracket" style="display: none"></i>
-                <div class="ellipse-container">
-                    <div class="ellipse secondary"></div>
-                    <div class="ellipse secondary"></div>
-                    <div class="ellipse secondary"></div>
-                </div>
-            </a>
-        </div>
-    </header>
+    {% include 'include/header.html' %}
     <div class="intro">
         <div class="text-container">
             <div class="content">
@@ -55,7 +32,7 @@
     </div>
     <div class="delimiter primary" style="margin-top: 60px"></div>
     <div class="container profiles" id="profiles">
-        <h2 class="right"><span>Набираемые</span> профили</h2>
+        <h2 class="right"><span>Набираемые</span> классы</h2>
         <div class="row profile-container">
             <div class="col m3 s6">
                 <div class="profile-class"></div>
@@ -139,14 +116,9 @@
     <div class="container text-blocks instructions" id="instructions">
         <h2 class="right"><span>Как</span> поступить</h2>
         <div class="row list-block">
-            <div class="col s1 list-container">
-                <div class="list primary"><div class="text">01</div></div>
-                <div class="list primary"><div class="text">02</div></div>
-                <div class="list primary"><div class="text">03</div></div>
-            </div>
-            <div class="col s11">
+            <div class="col s12 list primary">
                 <div class="text-block">
-                    <h3>Подготовьте документы в электронном виде</h3>
+                    <h3 class="list-item primary">Подготовьте документы в электронном виде</h3>
                     <p>
                         &#8226; Паспорт с пропиской<br>
                         &#8226; Аттестат за 9 класс<br>
@@ -155,38 +127,34 @@
                     </p>
                     <div class="h100"></div>
                 </div>
-                 <div class="text-block">
-                    <h3>Заполните форму</h3>
+                <div class="text-block">
+                    <h3 class="list-item primary">Заполните форму</h3>
                     <p>
                         Вместе с родителями заполните форму для подачи заявления в 10 класс.<br>
                         Укажите информацию о Вашей успеваимости в школе и результатах ОГЭ.<br>
-                        Не забудьте прикрепить индивидуальные достижения и выбрать профильный класс, в котором Вы хотел бы учиться.
+                        Не забудьте прикрепить индивидуальные достижения и выбрать профильный класс, в котором Вы хотел бы
+                        учиться.
                     </p>
-                     <div class="h100"></div>
+                    <div class="h100"></div>
                 </div>
-                 <div class="text-block">
-                    <h3>Ждите результатов</h3>
+                <div class="text-block">
+                    <h3 class="list-item primary">Ждите результатов</h3>
                     <p>
                         Отслеживайте статус заявки и сообщения от приёмной комиссии в личном кабинете.<br>
                         Когда появяться результаты отбора, мы сообщим Вам по электронной пойти или по телефону.
                     </p>
-                     <div class="h100"></div>
+                    <div class="h100"></div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s1"></div>
-            <div class="col s11">
-                <a href="{% url "enroll" %}" class="btn primary ellipse-btn enroll-link">
-                    Подать заявку
-                    <div class="ellipse-container">
-                        <div class="ellipse secondary"></div>
-                        <div class="ellipse secondary"></div>
-                        <div class="ellipse secondary"></div>
-                    </div>
-                </a>
+        <a href="{% url "enroll" %}" class="btn primary ellipse-btn enroll-link">
+            Подать заявку
+            <div class="ellipse-container">
+                <div class="ellipse secondary"></div>
+                <div class="ellipse secondary"></div>
+                <div class="ellipse secondary"></div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="delimiter secondary"></div>
     <div class="container text-blocks statistics" id="statistics">
@@ -248,14 +216,9 @@
         <div class="swiper-button-prev"><img src="{% static "image/arrow.svg" %}" alt="arrow"></div>
         <div class="swiper-button-next"><img src="{% static "image/arrow.svg" %}" alt="arrow"></div>
         <div class="row list-block">
-            <div class="col s1 list-container">
-                <div class="list secondary"></div>
-                <div class="list secondary"></div>
-                <div class="list secondary"></div>
-            </div>
-            <div class="col s11">
+            <div class="col list secondary">
                 <div class="text-block">
-                    <h3>Вам понадобится</h3>
+                    <h3 class="list-item secondary">Вам понадобится</h3>
                     <p>
                         молоко 500 мл, яйца 3 шт.
                         ,мука 200 г
@@ -263,9 +226,10 @@
                         ,сахар 30 г (2 ст. ложки)
                         ,соль 2-3 г (1/2 ч. ложки)
                     </p>
+                    <div class="h100"></div>
                 </div>
                 <div class="text-block">
-                    <h3>Вам понадобится</h3>
+                    <h3 class="list-item secondary">Вам понадобится</h3>
                     <p>
                         молоко 500 мл, яйца 3 шт.
                         ,мука 200 г
@@ -273,9 +237,10 @@
                         ,сахар 30 г (2 ст. ложки)
                         ,соль 2-3 г (1/2 ч. ложки)
                     </p>
+                    <div class="h100"></div>
                 </div>
                 <div class="text-block">
-                    <h3>Вам понадобится</h3>
+                    <h3 class="list-item secondary">Вам понадобится</h3>
                     <p>
                         молоко 500 мл, яйца 3 шт.
                         ,мука 200 г
@@ -283,11 +248,14 @@
                         ,сахар 30 г (2 ст. ложки)
                         ,соль 2-3 г (1/2 ч. ложки)
                     </p>
+                    <div class="h100"></div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="delimiter primary"></div>
+    {% include 'include/footer.html' %}
     <script src="https://kit.fontawesome.com/5ff0ee1a91.js" crossorigin="anonymous"></script>
     <script src="{% static "js/index.js" %}"></script>
-</body>
+    </body>
 </html>

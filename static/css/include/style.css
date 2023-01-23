@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css");
 @import url('./grid.css');
+@import url('./header.css');
+@import url('./footer.css');
 
 :root {
     --dark: #222222;
@@ -207,90 +209,42 @@ h2.left span::after {
     border-color: var(--m-primary);
 }
 
-.list-block {
-    display: flex;
+.list {
+    border-left: 3px solid var(--gray);
+    padding-left: 20px !important;
 }
 
-.list-container {
-    flex: 1;
-}
-
-.list-container .list {
-    width: 0;
-    height: 33%;
-    border: 3px solid var(--gray);
-    position: relative;
-}
-
-.list-container .list:nth-child(1)::after {
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: -8px;
-    width: 16px;
-    height: 64px;
-    border-radius: 30px;
-    background: var(--gray);
-}
-
-.list-container .list:nth-child(2)::after {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: -9px;
-    width: 18px;
-    height: 18px;
-    border-radius: 30px;
-    background: var(--gray);
-}
-
-.list-container .list:nth-child(2)::before {
-    content: "";
-    position: absolute;
-    top: 35px;
-    left: -9px;
-    width: 18px;
-    height: 18px;
-    border-radius: 30px;
-    background: var(--gray);
-}
-
-.list-container .list:nth-child(3)::after {
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: -8px;
-    width: 16px;
-    height: 64px;
-    background: var(--gray);
-}
-
-.list-container .list .text {
-    position: absolute;
-    top: -6px;
-    right: 24px;
-    font-size: 60px;
-    font-weight: 500;
-    color: var(--m-secondary) !important;
-}
-
-.list-container .list.primary {
+ .list.primary {
     border-color: var(--m-primary);
 }
-
-.list-container .list.secondary {
+ .list.secondary {
     border-color: var(--m-secondary);
 }
+ 
+ .list-item {
+     position: relative;
+ }
 
-.list-container .list.primary::after,
-.list-container .list.primary::before {
+.list-item.primary::before,
+.list-item.primary::after {
     background: var(--m-primary);
 }
 
-.list-container .list.secondary::after,
-.list-container .list.secondary::before {
+.list-item.secondary::before,
+.list-item.secondary::after {
     background: var(--m-secondary);
 }
+
+.list-item::before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 70px;
+    background: var(--gray);
+    left: -30px;
+    border-radius: 30px;
+}
+
 
 .swiper-container {
     overflow: hidden;
@@ -395,4 +349,26 @@ h2.left span::after {
         height: 14px;
         top: -7px;
     }
+}
+
+input[type='text'] {
+    border-radius: 20px;
+    border: 3px solid var(--m-primary);
+    width: 300px;
+    background: transparent;
+    padding: 16px 12px;
+    font-size: 20px;
+}
+
+.errorlist {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorlist li {
+    color: #EF4444 !important;
+    margin-top: 8px;
 }
