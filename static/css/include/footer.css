@@ -44,3 +44,49 @@ footer .copyright a {
         margin-top: 0 !important;
     }
 }
+
+.floating {
+    position: fixed !important;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    padding: 8px 16px !important;
+}
+
+.floating.visible {
+    opacity: 1;
+}
+
+.floating.in {
+    animation-duration: 0.2s;
+    animation-name: show-btn;
+}
+
+.floating.out {
+    animation-duration: 0.2s;
+    animation-name: hide-btn;
+}
+
+@keyframes show-btn {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 20px;
+        opacity: 1;
+    }
+}
+
+@keyframes hide-btn {
+    from {
+        bottom: 20px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}

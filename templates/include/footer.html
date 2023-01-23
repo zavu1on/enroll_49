@@ -1,3 +1,4 @@
+{% load static %}
 <footer>
     {% if request.path == '/' %}
         <div class="part links">
@@ -9,4 +10,13 @@
     <div class="part links copyright">
         <a href="https://lyceum49.ru/" target="_blank" id="copyright">&copy; 49 лицей 2023 - </a>
     </div>
+    <a href="#header" id="floatingButton" class="btn secondary ellipse-btn floating">
+        <i class="fa-sharp fa-solid fa-caret-up"></i>
+        <div class="ellipse-container">
+            <div class="ellipse primary"></div>
+            <div class="ellipse primary"></div>
+            <div class="ellipse primary"></div>
+        </div>
+    </a>
 </footer>
+<script src="{% static "js/floatingButton.js" %}"></script>
