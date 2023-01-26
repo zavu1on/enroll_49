@@ -1,8 +1,9 @@
+from datetime import datetime
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView
 from .forms import EnrollForm, LoginForm
-from .models import EnrollApplication, ExtraAchievement, ProfileClass
+from .models import EnrollApplication, ExtraAchievement
 # Create your views here.
 
 
@@ -14,6 +15,14 @@ class EnrollView(FormView):
     template_name = 'enroll.html'
     form_class = EnrollForm
     success_url = reverse_lazy('profile')
+
+
+    def get_context_data(self, **kwargs):
+        ctx = super(EnrollView, self).get_context_data(**kwargs)
+
+        ctx['year'] = datetime.now().year
+
+        return ctx
 
     def form_valid(self, form: EnrollForm):
         data = form.cleaned_data

@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
+{% load static %}
 <head>
     {% include 'include/head.html' %}
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static "css/enroll.css" %}">
+    <title>Лицей 49. Поступление {{ year }}</title>
 </head>
 <body>
-    <h1>Подача заявления</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    {% include 'include/header.html' %}
+    <div class="card-container">
+        <div class="intro">
+            <div class="text-container">
+                <div class="content">
+                    <div class="text">Лицей 49</div>
+                    <div class="year">Поступление {{ year }}</div>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="{% static "image/big-eye.png" %}" alt="big-eye">
+            </div>
+        </div>
+        <div class="delimiter primary" style="margin-top: 60px"></div>
+    </div>
+    {% include 'include/footer.html' %}
+{#    <form method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Submit</button>#}
+{#    </form>#}
 </body>
 </html>

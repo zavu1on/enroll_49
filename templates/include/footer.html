@@ -20,3 +20,11 @@
     </a>
 </footer>
 <script src="{% static "js/floatingButton.js" %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const copyrightLink = document.querySelector('#copyright')
+
+        const text = document.createTextNode(new Date().getFullYear().toString())
+        copyrightLink.appendChild(text)
+    })
+</script>

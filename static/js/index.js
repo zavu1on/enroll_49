@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const texts = document.querySelectorAll('.teachers .teacher .text')
     const ice = document.querySelector('#ice')
     const smoothLinks = document.querySelectorAll('a[href^="#"]')
-    const copyrightLink = document.querySelector('#copyright')
 
     texts.forEach((el, idx) => {
         if (idx % 2 === 0) {
@@ -92,7 +91,4 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         })
     }
-
-    const text = document.createTextNode(new Date().getFullYear().toString())
-    copyrightLink.appendChild(text)
 })
