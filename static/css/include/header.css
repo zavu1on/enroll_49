@@ -68,3 +68,57 @@ header .right nav ul li a:hover::after {
 header .right .profile-link {
     margin-left: 35px;
 }
+
+@media screen and (max-width: 1530px) {
+    header .right .profile-link {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    header .right nav {
+        display: none;
+    }
+
+    header .logo-container .title {
+        font-size: 28px;
+    }
+
+    header .right .profile-link {
+        font-size: 20px;
+    }
+
+    header .logo-container .logo {
+        width: 24px;
+        height: 48px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    header .right .profile-link {
+        font-size: 18px;
+        padding: 8px 20px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    header {
+        padding: 0 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    header, .intro {
+        padding: 0 20px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    header .right .profile-link span {
+        display: none;
+    }
+
+    header .right .profile-link i {
+        display: block !important;
+    }
+}

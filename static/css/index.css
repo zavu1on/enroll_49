@@ -188,10 +188,6 @@
 }
 
 @media screen and (max-width: 1530px) {
-    header .right .profile-link {
-        margin-left: 0;
-    }
-
     .intro .text-container .content .text {
         font-size: 75px;
     }
@@ -299,23 +295,6 @@
         left: -30px;
     }
 
-    header .right nav {
-        display: none;
-    }
-
-    header .logo-container .title {
-        font-size: 28px;
-    }
-
-    header .right .profile-link {
-        font-size: 20px;
-    }
-
-    header .logo-container .logo {
-        width: 24px;
-        height: 48px;
-    }
-
     .text-blocks {
         margin: 0 180px;
     }
@@ -363,11 +342,6 @@
     .swiper-button-next,
     .swiper-button-prev {
         top: 132px;
-    }
-
-    header .right .profile-link {
-        font-size: 18px;
-        padding: 8px 20px;
     }
 }
 
@@ -419,10 +393,6 @@
         bottom: 0;
     }
 
-    header {
-        padding: 0 40px;
-    }
-
     .intro {
         padding: 0 80px;
         margin-top: 0;
@@ -454,10 +424,6 @@
 
     .profiles .row {
         margin-top: 0 !important;
-    }
-
-    header, .intro {
-        padding: 0 20px;
     }
 
     .swiper-button-next,
@@ -515,14 +481,6 @@
 
     .intro .text-container .content .text div {
         font-size: 24px;
-    }
-
-    header .right .profile-link span {
-        display: none;
-    }
-
-    header .right .profile-link i {
-        display: block !important;
     }
 
     .statistics .list-block {
