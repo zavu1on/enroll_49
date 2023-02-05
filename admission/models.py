@@ -134,7 +134,7 @@ class EnrollApplication(models.Model):
     )
     message = models.TextField('Сообщение для учеников', default='', blank=True)
     rating_place = models.FloatField(
-        'Место в общем рейтинге',
+        'Рейтинг',
         default=-1,
         help_text='Заполняется администрацией'
     )

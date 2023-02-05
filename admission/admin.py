@@ -57,7 +57,7 @@ def make_exel(modeladmin, request, queryset):
             'Баллы за экзамен по выбору № 1': app.first_profile_exam_point,
             'Экзамен по выбору № 2': app.second_profile_exam.name,
             'Баллы за экзамен по выбору № 2': app.second_profile_exam_point,
-            'Место в общем рейтинге': app.rating_place
+            'Рейтинг': app.rating_place
         })
 
     name = f'рейтинг.{time()}.csv'
