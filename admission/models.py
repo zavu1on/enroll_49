@@ -178,3 +178,30 @@ class ExtraAchievement(models.Model):
     class Meta:
         verbose_name = 'Дополнительное достижение'
         verbose_name_plural = 'Дополнительные достижения'
+
+
+class Teacher(models.Model):
+    fio = models.CharField('ФИО учителя', max_length=300, help_text='В формате: "Фамилия И.О."')
+    photo = models.ImageField('Фотография', upload_to='teachers/')
+
+    def __str__(self):
+        return self.fio
+
+    class Meta:
+        verbose_name = 'Учитель'
+        verbose_name_plural = 'Учителя'
+
+
+class Statistic(models.Model):
+    class_name = models.CharField('Название профильного класса', max_length=300)
+    number_of_received = models.PositiveIntegerField('Количество поступивших')
+    number_of_graduates = models.PositiveIntegerField('Количество выпустившихся')
+    number_of_medalists = models.PositiveIntegerField('Количество выпустившихся медалистов')
+    number_of_state_employees = models.PositiveIntegerField('Количество выпустившихся бюджетников')
+
+    def __str__(self):
+        return self.class_name
+
+    class Meta:
+        verbose_name = 'Статистика'
+        verbose_name_plural = 'Статистики'

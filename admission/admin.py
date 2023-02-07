@@ -13,6 +13,8 @@ from .services import calc_rating
 admin.site.register(models.Exam)
 admin.site.register(models.ProfileClass)
 admin.site.register(models.ExtraAchievement)
+admin.site.register(models.Teacher)
+admin.site.register(models.Statistic)
 
 logger = logging.getLogger(__name__)
 
