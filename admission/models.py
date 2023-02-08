@@ -1,4 +1,6 @@
 import logging
+
+from colorfield.fields import ColorField
 from django.db import models
 from django.conf import settings
 from django.core.mail import send_mail
@@ -29,6 +31,7 @@ class ProfileClass(models.Model):
         Exam,
         verbose_name='Профильные экзамены',
     )
+    color = ColorField('Цвет карточки на сайте', default='#d9d9d9')
 
     def __str__(self):
         return self.name
@@ -182,6 +185,7 @@ class ExtraAchievement(models.Model):
 
 class Teacher(models.Model):
     fio = models.CharField('ФИО учителя', max_length=300, help_text='В формате: "Фамилия И.О."')
+    lesson = models.CharField('Предмет', max_length=300)
     photo = models.ImageField('Фотография', upload_to='teachers/')
 
     def __str__(self):
@@ -193,7 +197,7 @@ class Teacher(models.Model):
 
 
 class Statistic(models.Model):
-    class_name = models.CharField('Название профильного класса', max_length=300)
+    name = models.CharField('Название профильного класса', max_length=300)
     number_of_received = models.PositiveIntegerField('Количество поступивших')
     number_of_graduates = models.PositiveIntegerField('Количество выпустившихся')
     number_of_medalists = models.PositiveIntegerField('Количество выпустившихся медалистов')

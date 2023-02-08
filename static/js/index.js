@@ -1,6 +1,6 @@
 let clickCounter = 0
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     new Swiper('.teachers', {
         slidesPerView: 4,
         spaceBetween: 90,
@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         slidesPerView: 3,
         slidesPerGroup: 3,
         initialSlide: 0,
-        centeredSlides: true,
-        loop: true,
         speed: 800,
 
         breakpoints: {
@@ -89,6 +87,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 behavior: 'smooth',
                 block: 'start',
             })
+        })
+    }
+
+    // statistic
+    const resp = await fetch('/api/statistic/')
+    const data = await resp.json()
+
+    const statisticButtons = document.querySelectorAll('.profile-statistic')
+    const enrollContent = document.querySelector('#enroll')
+    const graduateContent = document.querySelector('#graduate')
+
+    for (const btn of statisticButtons) {
+        btn.addEventListener('click', event => {
+            console.log(event.target.id, data)
+            const active_statistic = data.find(s => s.id.toString() === event.target.id)
+
+            if (active_statistic) {
+                statisticButtons.forEach(btn => btn.classList.remove('active'))
+                event.target.classList.add('active')
+
+                enrollContent.innerHTML = `Всего поступило - ${active_statistic.number_of_received} человек(а)`
+                graduateContent.innerHTML = `Всего выпустилось - ${active_statistic.number_of_graduates} ученик(ов)<br>Из них медалистов - ${active_statistic.number_of_medalists} ученик(ов)<br>В ВУЗ на бюджет поступили - ${active_statistic.number_of_state_employees} выпускник(ов)`
+            }
         })
     }
 })

@@ -35,30 +35,102 @@
         <h2 class="right"><span>Набираемые</span> классы</h2>
         <div class="row profile-container">
             <div class="col m3 s6">
-                <div class="profile-class"></div>
+                <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.0.color }}">
+                    <div class="name">{{ profile_classes.0.name }}</div>
+                    <div class="exams">{{ profile_classes.0.profile_exams.all.0.name }} + {{ profile_classes.0.profile_exams.all.1.name }}</div>
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
             </div>
             <div class="col m3 s6">
-                <div class="profile-class"></div>
+                <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.1.color }}">
+                    <div class="name">{{ profile_classes.1.name }}</div>
+                    <div class="exams">{{ profile_classes.1.profile_exams.all.0.name }} + {{ profile_classes.1.profile_exams.all.1.name }}</div>
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
             </div>
             <div class="col m3 s6">
-                <div class="profile-class"></div>
+                <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.2.color }}">
+                    <div class="name">{{ profile_classes.2.name }}</div>
+                    <div class="exams">{{ profile_classes.2.profile_exams.all.0.name }} + {{ profile_classes.2.profile_exams.all.1.name }}</div>
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
             </div>
             <div class="col m3 s6 img-col">
-                <img src="{% static "image/ice.png" %}" alt="ice" id="ice">
+                {% if profile_classes|length >= 7 %}
+                    <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.6.color }}">
+                        <div class="name">{{ profile_classes.6.name }}</div>
+                        <div class="exams">{{ profile_classes.6.profile_exams.all.0.name }} + {{ profile_classes.6.profile_exams.all.1.name }}</div>
+                        <div class="ellipse-container">
+                            <div class="ellipse primary"></div>
+                            <div class="ellipse primary"></div>
+                            <div class="ellipse primary"></div>
+                        </div>
+                    </a>
+                {% else %}
+                    <img src="{% static "image/ice.png" %}" alt="ice" id="ice">
+                {% endif %}
             </div>
         </div>
         <div class="row profile-container">
             <div class="col m3 s6 img-col">
-                <img src="{% static "image/star.png" %}" class="star" alt="star">
+                {% if profile_classes|length == 8 %}
+                    <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.7.color }}">
+                        <div class="name">{{ profile_classes.7.name }}</div>
+                        <div class="exams">{{ profile_classes.7.profile_exams.all.0.name }} + {{ profile_classes.7.profile_exams.all.1.name }}</div>
+                        <div class="ellipse-container">
+                            <div class="ellipse primary"></div>
+                            <div class="ellipse primary"></div>
+                            <div class="ellipse primary"></div>
+                        </div>
+                    </a>
+                {% else %}
+                    <img src="{% static "image/star.png" %}" alt="star" class="star">
+                {% endif %}
             </div>
             <div class="col m3 s6">
-                <div class="profile-class"></div>
+                <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.3.color }}">
+                    <div class="name">{{ profile_classes.3.name }}</div>
+                    <div class="exams">{{ profile_classes.3.profile_exams.all.0.name }} + {{ profile_classes.3.profile_exams.all.1.name }}</div>
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
             </div>
             <div class="col m3 s6">
-                <div class="profile-class"></div>
+                <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.4.color }}">
+                    <div class="name">{{ profile_classes.4.name }}</div>
+                    <div class="exams">{{ profile_classes.4.profile_exams.all.0.name }} + {{ profile_classes.4.profile_exams.all.1.name }}</div>
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
             </div>
             <div class="col m3 s6">
-                <div class="profile-class"></div>
+                <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.5.color }}">
+                    <div class="name">{{ profile_classes.5.name }}</div>
+                    <div class="exams">{{ profile_classes.5.profile_exams.all.0.name }} + {{ profile_classes.5.profile_exams.all.1.name }}</div>
+                    <div class="ellipse-container">
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                        <div class="ellipse primary"></div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -67,48 +139,16 @@
         <h2 class="left"><span>Кафедра</span> учителей</h2>
         <div class="swiper-container teachers">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="teacher">
-                        <div class="text">
-                            <div>Милорадова О.В. 1<br>Русский язык</div>
+                {% for teacher in teachers %}
+                    <div class="swiper-slide">
+                        <div class="teacher">
+                            <img src="{{ teacher.photo.url }}" alt="{{ teacher.fio }}">
+                            <div class="text">
+                                <div>{{ teacher.fio }}<br>{{ teacher.lesson }}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="teacher">
-                        <div class="text">
-                            <div>Милорадова О.В. 2<br>Русский язык</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="teacher">
-                        <div class="text">
-                            <div>Милорадова О.В. 3<br>Русский язык</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="teacher">
-                        <div class="text">
-                            <div>Милорадова О.В. 4<br>Русский язык</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="teacher">
-                        <div class="text">
-                            <div>Милорадова О.В. 5<br>Русский язык</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="teacher">
-                        <div class="text">
-                            <div>Милорадова О.В. 6<br>Русский язык</div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -161,56 +201,32 @@
         <h2 class="left"><span>Статистика</span> прошлого года</h2>
         <div class="swiper-container statistics">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="btn primary outline ellipse-btn profile-statistic">
-                        Инженерный класс 1
-                        <div class="ellipse-container">
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
+                {% for statistic in statistics %}
+                    {% if statistic.id == active_statistic.id %}
+                        <div class="swiper-slide">
+                            <div class="btn primary outline ellipse-btn profile-statistic active" id="{{ statistic.id }}">
+                                {{ statistic.name }}
+                                <div class="ellipse-container">
+                                    <div class="ellipse secondary"></div>
+                                    <div class="ellipse secondary"></div>
+                                    <div class="ellipse secondary"></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="btn primary outline ellipse-btn profile-statistic">
-                        Инженерный класс 2
-                        <div class="ellipse-container">
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
+                    {% else %}
+                        <div class="swiper-slide" id="{{ statistic.id }}">
+                            <div class="btn primary outline ellipse-btn profile-statistic" id="{{ statistic.id }}">
+                                {{ statistic.name }}
+                                <div class="ellipse-container">
+                                    <div class="ellipse secondary"></div>
+                                    <div class="ellipse secondary"></div>
+                                    <div class="ellipse secondary"></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="btn primary outline ellipse-btn profile-statistic">
-                        Инженерный класс 3
-                        <div class="ellipse-container">
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="btn primary outline ellipse-btn profile-statistic">
-                        Инженерный класс 4
-                        <div class="ellipse-container">
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="btn primary outline ellipse-btn profile-statistic">
-                        Инженерный класс 5
-                        <div class="ellipse-container">
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                            <div class="ellipse secondary"></div>
-                        </div>
-                    </div>
-                </div>
+                    {% endif %}
+
+                {% endfor %}
             </div>
         </div>
         <div class="swiper-button-prev"><img src="{% static "image/arrow.svg" %}" alt="arrow"></div>
@@ -218,37 +234,19 @@
         <div class="row list-block">
             <div class="col list secondary">
                 <div class="text-block">
-                    <h3 class="list-item secondary">Вам понадобится</h3>
-                    <p>
-                        молоко 500 мл, яйца 3 шт.
-                        ,мука 200 г
-                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
-                        ,сахар 30 г (2 ст. ложки)
-                        ,соль 2-3 г (1/2 ч. ложки)
+                    <h3 class="list-item secondary">Поступившие</h3>
+                    <p id="enroll">
+                        Всего поступило - {{ active_statistic.number_of_received }} человек(а)
                     </p>
                     <div class="h100"></div>
                 </div>
                 <div class="text-block">
-                    <h3 class="list-item secondary">Вам понадобится</h3>
-                    <p>
-                        молоко 500 мл, яйца 3 шт.
-                        ,мука 200 г
-                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
-                        ,сахар 30 г (2 ст. ложки)
-                        ,соль 2-3 г (1/2 ч. ложки)
+                    <h3 class="list-item secondary">Выпустившиеся</h3>
+                    <p id="graduate">
+                        Всего выпустилось - {{ active_statistic.number_of_graduates }} ученик(ов)<br>
+                        Из них медалистов - {{ active_statistic.number_of_medalists }} ученик(ов)<br>
+                        В ВУЗ на бюджет поступили - {{ active_statistic.number_of_state_employees }} выпускник(ов)
                     </p>
-                    <div class="h100"></div>
-                </div>
-                <div class="text-block">
-                    <h3 class="list-item secondary">Вам понадобится</h3>
-                    <p>
-                        молоко 500 мл, яйца 3 шт.
-                        ,мука 200 г
-                        ,масло сливочное,(или растительное) 30 г (2 ст. ложки)
-                        ,сахар 30 г (2 ст. ложки)
-                        ,соль 2-3 г (1/2 ч. ложки)
-                    </p>
-                    <div class="h100"></div>
                 </div>
             </div>
         </div>

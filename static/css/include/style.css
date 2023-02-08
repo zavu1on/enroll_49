@@ -280,7 +280,7 @@ h2.left span::after {
     content: "";
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1450px) {
     h2 {
         font-size: 50px;
     }

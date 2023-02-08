@@ -2,13 +2,25 @@ from datetime import datetime
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView
+from rest_framework.generics import ListAPIView
 from .forms import EnrollForm, LoginForm
-from .models import EnrollApplication, ExtraAchievement
+from .models import EnrollApplication, ExtraAchievement, ProfileClass, Teacher, Statistic
+from .serializers import StatisticSerializer
 # Create your views here.
 
 
 class IndexView(TemplateView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+
+        ctx['profile_classes'] = ProfileClass.objects.all()
+        ctx['teachers'] = Teacher.objects.all()
+        ctx['statistics'] = Statistic.objects.all()
+        ctx['active_statistic'] = ctx['statistics'][0]
+
+        return ctx
 
 
 class EnrollView(FormView):
@@ -94,6 +106,12 @@ class LoginView(FormView):
         self.request.session['auth'] = data['passport']
 
         return super().form_valid(form)
+
+
+class ListStatisticView(ListAPIView):
+
+    serializer_class = StatisticSerializer
+    queryset = Statistic.objects.all()
 
 
 def logout_view(request):
