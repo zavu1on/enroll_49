@@ -83,6 +83,7 @@ class EnrollApplication(models.Model):
         'Оценка за экзамен по математике',
         validators=[validators.validate_mark]
     )
+    profile_class = models.ForeignKey(ProfileClass, models.SET_NULL, verbose_name='Профильный класс', null=True)
     first_profile_exam = models.ForeignKey(
         Exam,
         models.SET_NULL,
@@ -107,7 +108,6 @@ class EnrollApplication(models.Model):
         'Оценка за экзамен по выбору № 2',
         validators=[validators.validate_mark]
     )
-    profile_class = models.ForeignKey(ProfileClass, models.SET_NULL, verbose_name='Профильный класс', null=True)
 
     # файлы
     passport_file = models.FileField('Паспорт', upload_to='passport/')
@@ -147,7 +147,10 @@ class EnrollApplication(models.Model):
         return self.fio
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        prev_app = EnrollApplication.objects.get(pk=self.id)
+        try:
+            prev_app = EnrollApplication.objects.get(pk=self.id)
+        except EnrollApplication.DoesNotExist:
+            return super().save(force_insert, force_update, using, update_fields)
 
         if self.message.strip() and prev_app.message != self.message:
             try:
@@ -161,7 +164,7 @@ class EnrollApplication(models.Model):
             except:
                 logger.error(f'Ошибка во время отправки сообщения на почту {self.email}')
 
-        super().save(force_insert, force_update, using, update_fields)
+        return super().save(force_insert, force_update, using, update_fields)
 
     class Meta:
         verbose_name = 'Заявление на поступление в лицей'

@@ -37,11 +37,10 @@ footer .copyright a {
 
     footer .part {
         margin-top: 12px;
-        flex-direction: row;
     }
 
     footer .links a {
-        margin-top: 0 !important;
+        margin-top: 8px !important;
     }
 }
 

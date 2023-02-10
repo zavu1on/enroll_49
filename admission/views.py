@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, FormView
 from rest_framework.generics import ListAPIView
 from .forms import EnrollForm, LoginForm
 from .models import EnrollApplication, ExtraAchievement, ProfileClass, Teacher, Statistic
-from .serializers import StatisticSerializer
+from .serializers import StatisticSerializer, ProfileClassSerializer
 # Create your views here.
 
 
@@ -47,16 +47,17 @@ class EnrollView(FormView):
 
             form.errors['passport_seria'] = ['Такой паспорт уже зарегистрирован']
             form.errors['passport_number'] = ['Такой паспорт уже зарегистрирован']
+
             return super().form_invalid(form)
         except EnrollApplication.DoesNotExist:
             pass
 
-        if data['profile_class'] in None:
+        if data['profile_class'] is None:
             form.errors['profile_class'] = ['Это поле не может быть пустым']
 
             return super().form_invalid(form)
 
-        application: EnrollApplication = form.save()
+        application = form.save()
 
         for file in self.request.FILES.getlist('achievements'):
             ExtraAchievement.objects.create(
@@ -64,7 +65,7 @@ class EnrollView(FormView):
                 enroll_application=application,
             )
 
-        self.request.session['auth'] = f'{data["passport_seria"]} {data["passport_number"]}'
+        self.request.session['auth'] = f'{data["passport_seria"]}-{data["passport_number"]}'
 
         return super().form_valid(form)
 
@@ -114,86 +115,12 @@ class ListStatisticView(ListAPIView):
     queryset = Statistic.objects.all()
 
 
+class ListProfileClassesView(ListAPIView):
+
+    serializer_class = ProfileClassSerializer
+    queryset = ProfileClass.objects.all()
+
+
 def logout_view(request):
     request.session['auth'] = None
     return redirect('/')
-
-
-def test_data(request):
-    # todo delete
-    import random
-    import datetime
-    from django.http.response import JsonResponse
-
-    # EnrollApplication.objects.create(
-    #     fio='test test test',
-    #     birthday=datetime.datetime.now(),
-    #     address='test',
-    #     phone=f'test',
-    #     email=f'test@mail.ru',
-    #     passport_seria=1234,
-    #     passport_number=123456,
-    #
-    #     father_fio='test test test',
-    #     father_phone='test test test',
-    #     father_address='test test test',
-    #     mother_fio='test test test',
-    #     mother_phone='test test test',
-    #     mother_address='test test test',
-    #
-    #     certificate_average_score=5,
-    #     russian_exam_point=27,
-    #     russian_exam_mark=4,
-    #     math_exam_point=25,
-    #     math_exam_mark=5,
-    #
-    #     first_profile_exam_id=1,
-    #     first_profile_exam_point=31,
-    #     first_profile_exam_mark=4,
-    #     second_profile_exam_id=2,
-    #     second_profile_exam_point=18,
-    #     second_profile_exam_mark=15,
-    #
-    #     is_accepted=True,
-    #     notification_method='phone',
-    #
-    #     profile_class_id=1
-    # )
-
-    for i in range(500):
-        EnrollApplication.objects.create(
-            fio='test test test',
-            birthday=datetime.datetime.now(),
-            address='test',
-            phone=f'test-{i}',
-            email=f'test-{i}@mail.ru',
-            passport_seria=random.randrange(1000, 9999),
-            passport_number=random.randrange(100000, 999999),
-
-            father_fio='test test test',
-            father_phone='test test test',
-            father_address='test test test',
-            mother_fio='test test test',
-            mother_phone='test test test',
-            mother_address='test test test',
-
-            certificate_average_score=random.randrange(2, 5),
-            russian_exam_point=random.randrange(1, 33),
-            russian_exam_mark=random.randrange(2, 5),
-            math_exam_point=random.randrange(1, 33),
-            math_exam_mark=random.randrange(2, 5),
-
-            first_profile_exam_id=1,
-            first_profile_exam_point=random.randrange(1, 33),
-            first_profile_exam_mark=random.randrange(2, 5),
-            second_profile_exam_id=2,
-            second_profile_exam_point=random.randrange(1, 33),
-            second_profile_exam_mark=random.randrange(2, 5),
-
-            is_accepted=True,
-            notification_method='phone',
-
-            profile_class_id=1
-        )
-
-    return JsonResponse({'success': True})

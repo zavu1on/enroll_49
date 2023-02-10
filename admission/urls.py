@@ -8,6 +8,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
     path('api/statistic/', views.ListStatisticView.as_view()),
-
-    path('test/', views.test_data),  # todo delete
+    path('api/profiles/', views.ListProfileClassesView.as_view()),
 ]

@@ -23,13 +23,46 @@
         <div class="delimiter primary" style="margin-top: 60px"></div>
         <div class="container">
             <h2 class="right"><span>Форма</span> поступления</h2>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="side end">
+                        {% for label in form.labels %}
+                            <div class="label-container">
+                                <label for="{{ label.id }}">{{ label.label }}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="side list primary">
+                        {{ form }}
+                    </div>
+                </div>
+                <div class="checkbox-container">
+                    <div class="content">
+                        {{ form.is_accepted }}
+                        <div class="text">
+                            Нажимая на "Подать заявление",
+                            Я автоматически и безусловно принимаю<br>
+                            <a href="#">согласие на обработку персональных данных</a>
+                        </div>
+                    </div>
+                </div>
+                {{ form.errors }}
+                <div class="btn-container">
+                    <button type="submit" class="btn primary ellipse-btn">
+                        Подать заявление
+                        <div class="ellipse-container">
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                            <div class="ellipse secondary"></div>
+                        </div>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     {% include 'include/footer.html' %}
-{#    <form method="post" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{#        {{ form.as_p }}#}
-{#        <button type="submit">Submit</button>#}
-{#    </form>#}
+    <script src="{% static "js/enroll.js" %}"></script>
 </body>
 </html>

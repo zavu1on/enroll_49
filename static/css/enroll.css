@@ -49,6 +49,101 @@
     justify-content: end;
 }
 
+.label-container {
+    height: 62px;
+    margin-right: 36px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+}
+
+label {
+    font-size: 24px;
+    text-align: right;
+    color: var(--m-primary) !important;
+}
+
+label.secondary {
+    color: var(--m-secondary) !important;
+}
+
+input, select {
+    margin-left: 36px;
+    margin-bottom: 24px;
+    font-size: 18px;
+    width: 420px;
+    height: 62px;
+}
+
+input[type='checkbox'] {
+    width: 24px;
+    margin-left: 0;
+    margin-right: 24px;
+    margin-bottom: 0;
+}
+
+option {
+    background: var(--dark);
+}
+
+input.secondary, select.secondary {
+    border-color: var(--m-secondary);
+}
+
+.row {
+    display: flex;
+}
+
+.side {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 0 !important;
+}
+
+.side.end {
+    align-items: end;
+}
+
+.side input[type='checkbox'] {
+    display: none;
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+    margin-bottom: 24px;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.checkbox-container .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.checkbox-container .content .text {
+    font-size: 20px;
+    max-width: 500px;
+    text-align: justify;
+}
+
+.checkbox-container .content .text a {
+    color: var(--m-secondary) !important;
+}
+
+.helptext {
+    display: none;
+}
+
 @media screen and (max-width: 1600px) {
     .intro .img-container img {
         width: 100%;
@@ -78,6 +173,48 @@
     .intro .text-container .content .year {
         margin-left: 0;
     }
+
+    input, select {
+        margin-left: 24px;
+        width: 320px;
+    }
+
+    .label-container {
+        margin-right: 24px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+
+    input[type='checkbox'] {
+        width: 24px;
+    }
+
+    .checkbox-container .content .text {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .side.end {
+        display: none;
+    }
+
+    input, select {
+        width: 100%;
+    }
+
+    input[type='checkbox'] {
+        width: 24px;
+    }
+
+     .helptext {
+         display: block;
+         margin-left: 24px;
+         position: relative;
+         bottom: 20px;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -86,7 +223,12 @@
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 440px) {
+    input, select, .helptext {
+        margin-left: 12px;
+    }
+
+
     .intro .text-container .content .text {
         font-size: 44px;
     }

@@ -5,10 +5,38 @@ from .validators import validate_password_exists
 
 
 class EnrollForm(forms.ModelForm):
-    captcha = ReCaptchaField(label=False)
+    # captcha = ReCaptchaField(label=False)
     achievements = forms.FileField(label='Индивидуальные достижения', widget=forms.FileInput(attrs={
-        'multiple': True
+        'multiple': True,
+        'required': False,
     }))
+
+    def __init__(self, *args, **kwargs):
+        super(EnrollForm, self).__init__(*args, **kwargs)
+        self.labels = []
+        with_helptext = [
+            forms.fields.TypedChoiceField,
+            forms.fields.FileField,
+            forms.models.ModelChoiceField,
+            forms.fields.DateField,
+        ]
+
+        for field in self.fields.keys():
+            label = self.fields[field].label
+
+            if field != 'is_accepted':
+                self.labels.append({
+                    'id': f'id_{field}',
+                    'label': label
+                })
+                self.fields[field].widget.attrs['class'] = 'input'
+
+            self.fields[field].widget.attrs['placeholder'] = label
+            self.fields[field].label = ''
+            self.fields[field].help_text = ''
+
+            if type(self.fields[field]) in with_helptext:
+                self.fields[field].help_text = label
 
     class Meta:
         model = EnrollApplication
