@@ -25,20 +25,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     const firstExamSelect = document.querySelector('#id_first_profile_exam')
     const secondExamSelect = document.querySelector('#id_second_profile_exam')
 
-    firstExamSelect.querySelectorAll('option').forEach(opt => opt.remove())
-    secondExamSelect.querySelectorAll('option').forEach(opt => opt.remove())
+    firstExamSelect.querySelectorAll('option').forEach((opt, idx) => {
+        if (idx !== 0)
+            opt.remove()
+    })
+    secondExamSelect.querySelectorAll('option').forEach((opt, idx) => {
+        if (idx !== 0)
+            opt.remove()
+    })
 
     const resp = await fetch('/api/profiles/')
     const data = await resp.json()
 
     profileSelect.addEventListener('change', event => {
-        firstExamSelect.querySelectorAll('option').forEach(opt => opt.remove())
-        secondExamSelect.querySelectorAll('option').forEach(opt => opt.remove())
+        firstExamSelect.querySelectorAll('option').forEach((opt, idx) => {
+            if (idx !== 0)
+                opt.remove()
+        })
+        secondExamSelect.querySelectorAll('option').forEach((opt, idx) => {
+            if (idx !== 0)
+                opt.remove()
+        })
 
         const exams = data.find(el => el.id.toString() === profileSelect.value).profile_exams
 
-        const emptyOptionForFirstExamSelect = document.createElement('option')
-        emptyOptionForFirstExamSelect.innerText = '---------'
         const firstOptionForFirstExamSelect = document.createElement('option')
         firstOptionForFirstExamSelect.innerText = exams[0].name
         firstOptionForFirstExamSelect.value = exams[0].id
@@ -46,12 +56,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         secondOptionForFirstExamSelect.innerText = exams[1].name
         secondOptionForFirstExamSelect.value = exams[1].id
 
-        firstExamSelect.appendChild(emptyOptionForFirstExamSelect)
         firstExamSelect.appendChild(firstOptionForFirstExamSelect)
         firstExamSelect.appendChild(secondOptionForFirstExamSelect)
 
-        const emptyOptionForSecondExamSelect = document.createElement('option')
-        emptyOptionForSecondExamSelect.innerText = '---------'
         const firstOptionForSecondExamSelect = document.createElement('option')
         firstOptionForSecondExamSelect.innerText = exams[0].name
         firstOptionForSecondExamSelect.value = exams[0].id
@@ -59,7 +66,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         secondOptionForSecondExamSelect.innerText = exams[1].name
         secondOptionForSecondExamSelect.value = exams[1].id
 
-        secondExamSelect.appendChild(emptyOptionForSecondExamSelect)
         secondExamSelect.appendChild(firstOptionForSecondExamSelect)
         secondExamSelect.appendChild(secondOptionForSecondExamSelect)
     })
