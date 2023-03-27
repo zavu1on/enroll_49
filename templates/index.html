@@ -58,7 +58,7 @@
             </div>
             <div class="col m3 s6">
                 <a href="/enroll/" class="profile-class secondary ellipse-btn" style="background: {{ profile_classes.2.color }}">
-                    <div class="name">{{ profile_classes.2.name }}</div>
+                    <div class="name">{{ profile_classes.2.name | safe }}</div>
                     <div class="exams">{{ profile_classes.2.profile_exams.all.0.name }} + {{ profile_classes.2.profile_exams.all.1.name }}</div>
                     <div class="ellipse-container">
                         <div class="ellipse primary"></div>

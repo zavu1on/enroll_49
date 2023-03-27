@@ -91,6 +91,8 @@ class ProfileView(TemplateView):
         enroll_app = EnrollApplication.objects.get(passport_seria=seria, passport_number=number)
 
         ctx['fio'] = enroll_app.fio
+        ctx['birthday'] = enroll_app.birthday
+
         ctx['status'] = list(filter(lambda el: el[0] == enroll_app.status, EnrollApplication.STATUSES))[0][1]
         ctx['message'] = enroll_app.message
 

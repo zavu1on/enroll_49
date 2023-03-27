@@ -1,17 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
+{% load static %}
 <head>
     {% include 'include/head.html' %}
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static "css/profile.css" %}">
+    <title>Личный кабинет</title>
 </head>
 <body>
-    <h1>Личный кабинет<br>Здравствуйте, {{ fio }}</h1>
-    <h3>Теущий статус заявки: <em>{{ status }}</em></h3>
-    <a href="/logout/">Выйти</a>
-
-    {% if message %}
-        <h4>Сообщение от администрации лицея</h4>
-        <p>{{ message }}</p>
-    {% endif %}
+    {% include 'include/header.html' %}
+    <div class="card-container">
+        <div class="row">
+            <div class="col s5 image">
+                <img src="{% static 'image/big-eye.png' %}" alt="big-eye">
+            </div>
+            <div class="col s7">
+                <div class="card">
+                    <div class="header secondary">
+                        <div class="title">
+                            Личная информация
+                        </div>
+                    </div>
+                    <div class="body">
+                        <h1>Здравствуйте, {{ fio }}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card">
+                    <div class="header">
+                        <div class="title">
+                            Статус заявки
+                        </div>
+                    </div>
+                    <div class="body">123</div>
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card">
+                    <div class="header">
+                        <div class="title">
+                            Место в рейтинге
+                        </div>
+                    </div>
+                    <div class="body">123</div>
+                </div>
+            </div>
+            <div class="col s7">
+                <div class="card">
+                    <div class="header secondary">
+                        <div class="title">
+                            Связь с администрацией
+                        </div>
+                    </div>
+                    <div class="body">123</div>
+                </div>
+            </div>
+            <div class="col s5 image">
+                <img src="{% static 'image/rect.png' %}" alt="rect">
+            </div>
+        </div>
+    </div>
+    {% include 'include/footer.html' %}
 </body>
 </html>

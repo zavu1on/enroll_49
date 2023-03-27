@@ -78,7 +78,7 @@
 .profile-container .profile-class .name {
     font-size: 22px;
     font-weight: 500;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     margin-right: 4px;
     text-transform: uppercase;
     text-align: right;
@@ -156,7 +156,7 @@
 
 /* --- TEXT BLOCKS --- */
 .text-blocks {
-    margin: 0 300px;
+    margin: 0 400px;
 }
 
 .text-blocks .text-block .h100 {
@@ -175,7 +175,7 @@
 
 .text-blocks .text-block p {
     margin-top: 8px;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     line-height: 40px;
 }

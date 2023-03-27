@@ -10,12 +10,20 @@ body {
     height: 100%;
 }
 
+.cross {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
 .card-container {
+    opacity: 0.9;
     flex: 1;
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    margin-left: 50%;
 }
 
 form {
@@ -35,7 +43,18 @@ form {
 }
 
 button {
-    margin-top: 80px;
+    margin-top: 120px;
+}
+
+@media screen and (max-width: 900px) {
+    .card-container {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .cross {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 700px) {
