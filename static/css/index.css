@@ -261,6 +261,10 @@
         font-size: 18px;
     }
 
+    .text-blocks {
+        margin: 0 300px;
+    }
+
     .text-blocks .text-block h3 {
         font-size: 42px;
     }

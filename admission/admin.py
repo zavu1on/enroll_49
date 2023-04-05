@@ -80,7 +80,8 @@ def notify_applicants(modeladmin, request, queryset):
                 settings.EMAIL_HOST_USER,
                 [app.email],
             )
-        except:
+        except Exception as e:
+            print(e)
             logger.error(f'Ошибка во время отправки сообщения на почту {app.email}')
 
 
