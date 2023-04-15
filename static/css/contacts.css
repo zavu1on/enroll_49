@@ -1,0 +1,44 @@
+@import url('include/style.css');
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    flex: 1;
+}
+
+h1 {
+    font-size: 48px;
+    margin-top: 24px;
+}
+
+h3 {
+    margin-top: 48px;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.container a {
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 8px !important;
+    display: block;
+}
+
+.container a:hover {
+    text-decoration: underline var(--m-secondary);
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 36px;
+    }
+}

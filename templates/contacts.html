@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru">
+{% load static %}
+<head>
+    {% include 'include/head.html' %}
+    <link rel="stylesheet" href="{% static "css/contacts.css" %}">
+    <title>Контакты</title>
+</head>
+<body>
+    {% include 'include/header.html' %}
+    <div class="container">
+        <h1>Связь с приемной комиссией</h1>
+        <h3>Контактный номер телефона</h3>
+        <a href="tel:215945">21-59-45</a>
+        <a href="tel:215945">+7-991-482-97-87</a>
+        <h3>Контактная электронная почта</h3>
+        <a href="mailto:maoulic49@edu.klgd.ru">maoulic49@edu.klgd.ru</a>
+        <h3>Адрес</h3>
+        <a href="#">Калининград, ул. Кирова, 28</a>
+    </div>
+    {% include 'include/footer.html' %}
+</body>
+</html>

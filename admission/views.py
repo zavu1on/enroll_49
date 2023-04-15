@@ -23,6 +23,10 @@ class IndexView(TemplateView):
         return ctx
 
 
+class ContactsView(TemplateView):
+    template_name = 'contacts.html'
+
+
 class EnrollView(FormView):
     template_name = 'enroll.html'
     form_class = EnrollForm

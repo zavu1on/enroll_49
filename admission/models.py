@@ -32,6 +32,7 @@ class ProfileClass(models.Model):
         verbose_name='Профильные экзамены',
     )
     color = ColorField('Цвет карточки на сайте', default='#d9d9d9')
+    competitive_places = models.PositiveIntegerField('Количество мест')
 
     def __str__(self):
         return self.name

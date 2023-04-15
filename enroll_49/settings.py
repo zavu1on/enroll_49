@@ -168,6 +168,7 @@ RECAPTCHA_REQUIRED_SCORE = 0.85
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'klgd.enroll.to.49@gmail.com'
 EMAIL_HOST_PASSWORD = 'ffmcrbqhitxkkiua'
+# GJe0IJ8T
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

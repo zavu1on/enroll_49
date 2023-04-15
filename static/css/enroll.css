@@ -144,6 +144,23 @@ input.secondary, select.secondary {
     display: none;
 }
 
+label[for='id_father_fio'],
+label[for='id_mother_fio'] {
+    position: relative;
+}
+
+label[for='id_father_fio']::before,
+label[for='id_mother_fio']::before {
+    content: '(законного представителя)';
+    width: max-content;
+    position: absolute;
+    bottom: -18px;
+    right: 0;
+    font-size: 14px;
+    overflow: visible;
+}
+
+
 @media screen and (max-width: 1600px) {
     .intro .img-container img {
         width: 100%;
