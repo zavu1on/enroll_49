@@ -21,7 +21,35 @@
                         </div>
                     </div>
                     <div class="body">
-                        <h1>Здравствуйте, {{ fio }}</h1>
+                        <div class="fio">Здравствуйте, {{ fio }}</div>
+                        <div class="text">
+                            Ваши контактные данные —
+                            <strong><a href="tel:{{ phone }}">{{ phone }}</a></strong>,
+                            <strong><a href="mailto:{{ email }}">{{ email }}</a></strong>
+                        </div>
+
+                        <div class="text mt-12">
+                            ФИО матери (законного представителя) и контактные данные —
+                            <strong>{{ mother_fio }}</strong>,
+                            <strong><a href="tel:{{ mother_phone }}">{{ mother_phone }}</a></strong>
+                        </div>
+                        <div class="text">
+                            ФИО отца (законного представителя) и контактные данные —
+                            <strong>{{ father_fio }}</strong>,
+                            <strong><a href="tel:{{ father_phone }}">{{ father_phone }}</a></strong>
+                        </div>
+
+                        <div class="text mt-12">Ваш адрес проживания — <strong>{{ address }}</strong></div>
+                        <div class="text with-checkbox">
+                            Серия и номер паспорта —
+                            <strong id="passport">**** ******</strong>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="checkbox">
+                                <label for="checkbox">Показать серию и номер паспорта</label>
+                            </div>
+                        </div>
+
+                        <div class="text mt-12">* Если какие-то данные некорректные, свяжитесь с приемной комиссией</div>
                     </div>
                 </div>
             </div>
@@ -32,7 +60,11 @@
                             Статус заявки
                         </div>
                     </div>
-                    <div class="body">123</div>
+                    <div class="body">
+                        <div class="text mt-12">Выбранный Вами профильный класс — <strong>{{ profile }}</strong></div>
+                        <div class="text">Сумма баллов за 4 экзамена ОГЭ — <strong>{{ exam_points }}</strong></div>
+                        <div class="text">Статус вашей заявки — <strong>{{ status }}</strong></div>
+                    </div>
                 </div>
             </div>
             <div class="col s6">
@@ -42,7 +74,17 @@
                             Место в рейтинге
                         </div>
                     </div>
-                    <div class="body">123</div>
+                    <div class="body">
+                        {% if can_show_rating %}
+                            <div class="text mt-12">Ваше место в рейтинге — <strong>{{ rating_place }}</strong></div>
+                        {% else %}
+                            <div class="text mt-12">
+                                Приемная комиссия составляет рейтинговые списки.<br>
+                                Информация о результатах отбора появится совсем скоро.<br>
+                                Мы сразу же оповестим Вас о результатах!
+                            </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             <div class="col s7">
@@ -52,7 +94,17 @@
                             Связь с администрацией
                         </div>
                     </div>
-                    <div class="body">123</div>
+                    <div class="body">
+                        <div class="text mt-12"><strong>Контактный номер телефона</strong></div>
+                        <div class="text"><a href="tel:215945">21-59-45</a></div>
+                        <div class="text"><a href="tel:215945">+7-991-482-97-87</a></div>
+
+                        <div class="text mt-12"><strong>Контактная электронная почта</strong></div>
+                        <div class="text"><a href="mailto:maoulic49@edu.klgd.ru">maoulic49@edu.klgd.ru</a></div>
+
+                        <div class="text mt-12"><strong>Адрес лицея</strong></div>
+                        <div class="text"><a href="#">Калининград, ул. Кирова, 28</a></div>
+                    </div>
                 </div>
             </div>
             <div class="col s5 image">
@@ -61,5 +113,20 @@
         </div>
     </div>
     {% include 'include/footer.html' %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const passport = '{{ passport }}'
+        const passportDIV = document.querySelector('#passport')
+        const checkbox = document.querySelector('#checkbox')
+
+        checkbox.addEventListener('change', event => {
+            if (event.target.checked) {
+                passportDIV.innerHTML = passport
+            } else {
+                passportDIV.innerHTML = '**** ******'
+            }
+        })
+    })
+    </script>
 </body>
 </html>

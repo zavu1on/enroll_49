@@ -1,9 +1,10 @@
 import logging
-
 from colorfield.fields import ColorField
 from django.db import models
 from django.conf import settings
 from django.core.mail import send_mail
+from solo.models import SingletonModel
+
 from . import validators
 # Create your models here.
 
@@ -47,6 +48,7 @@ class EnrollApplication(models.Model):
     STATUSES = (
         ('verification', 'В процессе верификации заявки'),
         ('processed', 'В процессе обработки заявки'),
+        ('resolved', 'Определенно место в рейтинге'),
         ('successes', 'Вы приняты'),
         ('rejected', 'Вы не приняты'),
     )
@@ -137,8 +139,8 @@ class EnrollApplication(models.Model):
         help_text='Заполняется администрацией'
     )
     message = models.TextField('Сообщение для учеников', default='', blank=True)
-    rating_place = models.FloatField(
-        'Рейтинг',
+    rating_place = models.PositiveIntegerField(
+        'Место в рейтинге',
         default=-1,
         help_text='Заполняется администрацией'
     )
@@ -213,3 +215,17 @@ class Statistic(models.Model):
     class Meta:
         verbose_name = 'Статистика'
         verbose_name_plural = 'Статистики'
+
+
+class SiteConfiguration(SingletonModel):
+    can_make_applications = models.BooleanField(
+        'Могут ли дети подавать заявки',
+        help_text='Если НЕТ, функицонал личного кабинета и формы поступления будет не доступен',
+        default=False
+    )
+
+    def __str__(self):
+        return 'Да' if self.can_make_applications else 'Нет'
+
+    class Meta:
+        verbose_name = verbose_name_plural = 'Конфигурация'

@@ -1,13 +1,15 @@
 import logging
 import sys
+from functools import reduce
 import pandas
 from time import time
 from django.contrib import admin
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import redirect
+from solo.admin import SingletonModelAdmin
 from . import models
-from .services import calc_rating
+from .models import ExtraAchievement
 # Register your models here.
 
 admin.site.register(models.Exam)
@@ -15,6 +17,8 @@ admin.site.register(models.ProfileClass)
 admin.site.register(models.ExtraAchievement)
 admin.site.register(models.Teacher)
 admin.site.register(models.Statistic)
+
+admin.site.register(models.SiteConfiguration, SingletonModelAdmin)
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +30,46 @@ class ExtraAchievementInline(admin.StackedInline):
 
 @admin.action(description='Рассчитать рейтинг поступающих для выбранных заявление')
 def calculate_rating(modeladmin, request, queryset):
-    for app in queryset.all():
-        calc_rating(app)
+    rating_dict = {}
+
+    for application in queryset.all():
+        k1 = application.certificate_average_score
+        k2 = sum([
+            application.russian_exam_point,
+            application.math_exam_point,
+            application.first_profile_exam_point,
+            application.second_profile_exam_point,
+        ]) / 4
+        k3_4 = reduce(lambda prev, new: prev + new.point,
+                      ExtraAchievement.objects.filter(enroll_application=application), 0)
+
+        exams = map(lambda el: el.name, application.profile_class.profile_exams.all())
+
+        if 'Русский язык' in exams:
+            k2 = sum([
+                application.russian_exam_point,
+                application.russian_exam_point,
+                application.math_exam_point,
+                application.first_profile_exam_point,
+                application.second_profile_exam_point,
+            ]) / 5
+        elif 'Математика' in exams:
+            k2 = sum([
+                application.russian_exam_point,
+                application.russian_exam_point,
+                application.math_exam_point,
+                application.first_profile_exam_point,
+                application.second_profile_exam_point,
+            ]) / 5
+
+        rating_dict[application.id] = k1 + k2 + k3_4
+    sorted_rating_list = sorted(rating_dict.items(), key=lambda el: el[1])
+
+    for idx, val in enumerate(sorted_rating_list):
+        application = queryset.get(id=val[0])
+
+        application.rating_place = len(sorted_rating_list) - idx
+        application.save(update_fields=['rating_place'])
 
 
 @admin.action(description='Обнулить рейтинг поступающих для выбранных заявление')
@@ -91,7 +133,7 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
     list_per_page = sys.maxsize
     list_display_links = ('fio',)
     list_filter = ('profile_class', 'status')
-    ordering = ('-rating_place', 'id')
+    ordering = ('rating_place', 'fio')
     readonly_fields = ('created_date',)
     search_fields = ('fio',)
     search_help_text = 'Поиск по ФИО'
