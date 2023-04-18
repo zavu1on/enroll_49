@@ -9,7 +9,8 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from solo.admin import SingletonModelAdmin
 from . import models
-from .models import ExtraAchievement
+from .models import ExtraAchievement, EnrollApplication, SiteConfiguration
+
 # Register your models here.
 
 admin.site.register(models.Exam)
@@ -113,14 +114,39 @@ def make_exel(modeladmin, request, queryset):
 @admin.action(description='Оповестить поступающих о результатах отбора (для выбранных заявление)')
 def notify_applicants(modeladmin, request, queryset):
     for app in queryset.all():
-        app: models.EnrollApplication
+        app: EnrollApplication
+        status_text = ''
+
+        for s in EnrollApplication.STATUSES:
+            if s[0] == app.status:
+                status_text = s[1]
+                break
 
         try:
+            solo = SiteConfiguration.get_solo()
+            message = '' \
+f'Текущий статус Вашего заявления в 10 {app.profile_class.name.lower()} класс лицея № 49 - <b>{status_text}</b>'
+
+            if app.status == 'success':
+                message = f'' \
+f'Вы приняты в 10 {app.profile_class.name.lower()} класс лицея № 49! ' \
+f'Подробности Вашего заявления Вы сможете узнать в личном кабинете.<br><br>' \
+f'Ждем Вас в лицее по адресу Калининград, ул. Кирова, 28 <b>{solo.get_documents_date.strftime("%d.%m.%Y")} с 9:00 до 15:00</b>!'
+
+            elif app.status == 'rejected':
+                message = f'' \
+f'К сожалению, Вы не прошли рейтинговый отбор в 10 {app.profile_class.name.lower()} класс лицея № 49.' \
+f'Подробности Вашего заявления Вы сможете узнать в личном кабинете.<br><br>' \
+f'Если у Вас остались вопросы или Вы не согласны с решением приемной комисси, Вы можете обратиться в конфликтную комиссию ' \
+f'в лицее по адресу Калининград, ул. Кирова, 28 <b>{solo.conflict_commission_date.strftime("%d.%m.%Y")} с {solo.start_conflict_commission_time.strftime("%H:%M")} до {solo.end_conflict_commission_time.strftime("%H:%M")}</b>!'
+
+
             send_mail(
-                f'Результаты отбора в 10-й {app.profile_class.name} класс лицея № 49!',
-                '',  # todo написать текст
+                f'Обработка заявления в 10-й {app.profile_class.name.lower()} класс лицея № 49!',
+                '',
                 settings.EMAIL_HOST_USER,
                 [app.email],
+                html_message=message
             )
         except Exception as e:
             print(e)

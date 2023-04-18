@@ -49,7 +49,7 @@ class EnrollApplication(models.Model):
         ('verification', 'В процессе верификации заявки'),
         ('processed', 'В процессе обработки заявки'),
         ('resolved', 'Определенно место в рейтинге'),
-        ('successes', 'Вы приняты'),
+        ('success', 'Вы приняты'),
         ('rejected', 'Вы не приняты'),
     )
     NOTIFICATION_METHOD = (
@@ -157,12 +157,17 @@ class EnrollApplication(models.Model):
 
         if self.message.strip() and prev_app.message != self.message:
             try:
+                message = f'' \
+f'Приёмная комиссия написал Вам сообщение, по поводу Вашей заявки. ' \
+f'Также посмотреть сообщение можно в личном кабинете.<br><br>' \
+f'"{self.message}"'
+
                 send_mail(
                     'Поступление в 10 класс лицея № 49. Новое сообщение от приемной комиссии',
                     '',
                     settings.EMAIL_HOST_USER,
                     [self.email],
-                    html_message=f'Приёмная комиссия написал Вам сообщение, по поводу Вашей заявки. Также посмотреть сообщение можно в личном кабинете.\n\n"{self.message}"\n\nКонтакты:\n...'  # todo дописать контакты
+                    html_message=message
                 )
             except:
                 logger.error(f'Ошибка во время отправки сообщения на почту {self.email}')
@@ -222,6 +227,27 @@ class SiteConfiguration(SingletonModel):
         'Могут ли дети подавать заявки',
         help_text='Если НЕТ, функицонал личного кабинета и формы поступления будет не доступен',
         default=False
+    )
+    get_documents_date = models.DateField(
+        'Дата приема документов, предварительно поступивших учеников',
+        help_text='Отображается в email-е',
+        null=True,
+        blank=True
+    )
+    conflict_commission_date = models.DateField(
+        'Дата сбора конфликтной комиссии',
+        null=True,
+        blank=True
+    )
+    start_conflict_commission_time = models.TimeField(
+        'Время начала конфликтной комисси',
+        null=True,
+        blank=True
+    )
+    end_conflict_commission_time = models.TimeField(
+        'Время окончания конфликтной комисси',
+        null=True,
+        blank=True
     )
 
     def __str__(self):
