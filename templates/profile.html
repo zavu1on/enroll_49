@@ -62,8 +62,12 @@
                     </div>
                     <div class="body">
                         <div class="text mt-12">Выбранный Вами профильный класс — <strong>{{ profile }}</strong></div>
-                        <div class="text">Сумма баллов за 4 экзамена ОГЭ — <strong>{{ exam_points }}</strong></div>
+                        <div class="text">Сумма первичных баллов за 4 экзамена ОГЭ — <strong>{{ exam_points }}</strong></div>
                         <div class="text">Статус вашей заявки — <strong>{{ status }}</strong></div>
+
+                        {% if can_show_literature_list %}
+                            <div class="text" style="margin-top: auto;"><a href="{% static 'spisok_literatury_na_10_klass.docx' %}">список ОБЯЗАТЕЛЬНОЙ литературы на 10 класс</a></div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -76,7 +80,12 @@
                     </div>
                     <div class="body">
                         {% if can_show_rating %}
-                            <div class="text mt-12">Ваше место в рейтинге — <strong>{{ rating_place }}</strong></div>
+                            <div class="text mt-12">
+                                Ваше место в рейтинге —
+                                <strong>{{ rating_place }}</strong>
+                                из
+                                <strong>{{ competitive_places }}</strong>
+                            </div>
                         {% else %}
                             <div class="text mt-12">
                                 Приемная комиссия составляет рейтинговые списки.<br>
@@ -95,6 +104,11 @@
                         </div>
                     </div>
                     <div class="body">
+                        {% if message %}
+                            <div class="text mt-12"><strong>Сообщение от приемной комиссии</strong></div>
+                            <div class="text"><i>{{ message }}</i></div>
+                        {% endif %}
+
                         <div class="text mt-12"><strong>Контактный номер телефона</strong></div>
                         <div class="text"><a href="tel:215945">21-59-45</a></div>
                         <div class="text"><a href="tel:215945">+7-991-482-97-87</a></div>
@@ -111,6 +125,15 @@
                 <img src="{% static 'image/rect.png' %}" alt="rect">
             </div>
         </div>
+        <a href="{% url "logout" %}" class="btn secondary ellipse-btn logout-button">
+            <span>Выйти из аккаунта</span>
+            <i class="fa-solid fa-right-to-bracket" style="display: none"></i>
+            <div class="ellipse-container">
+                <div class="ellipse secondary"></div>
+                <div class="ellipse secondary"></div>
+                <div class="ellipse secondary"></div>
+            </div>
+        </a>
     </div>
     {% include 'include/footer.html' %}
     <script>

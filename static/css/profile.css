@@ -20,11 +20,15 @@ strong * {
     font-weight: 500 !important;
 }
 
-a {
+i {
     color: var(--dark) !important;
 }
 
-a:hover {
+.row a {
+    color: var(--dark) !important;
+}
+
+.row a:hover {
     text-decoration: underline var(--m-secondary);
 }
 
@@ -116,6 +120,11 @@ a:hover {
 
 .checkbox-container label {
     color: var(--m-secondary) !important;
+}
+
+.logout-button {
+    margin-left: 12px;
+    margin-top: 12px;
 }
 
 @media screen and (max-width: 1680px) {

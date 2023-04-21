@@ -137,12 +137,16 @@ class ProfileView(TemplateView):
             enroll_app.second_profile_exam_point
         ])
         ctx['status'] = status[1]
-        ctx['can_show_rating'] = list(filter(lambda el: el[0] == enroll_app.status, EnrollApplication.STATUSES))[0][1] in [
+        ctx['can_show_literature_list'] = status[0] == 'success'
+        ctx['can_show_rating'] = status[0] in [
             'resolved',
-            'successes',
+            'success',
             'rejected',
         ]
         ctx['rating_place'] = enroll_app.rating_place
+        ctx['competitive_places'] = enroll_app.profile_class.competitive_places
+
+        ctx['message'] = enroll_app.message
 
         return ctx
 

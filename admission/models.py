@@ -1,6 +1,6 @@
 import logging
 from colorfield.fields import ColorField
-from django.db import models
+from django.db import models, IntegrityError
 from django.conf import settings
 from django.core.mail import send_mail
 from solo.models import SingletonModel
@@ -141,7 +141,7 @@ class EnrollApplication(models.Model):
     message = models.TextField('Сообщение для учеников', default='', blank=True)
     rating_place = models.PositiveIntegerField(
         'Место в рейтинге',
-        default=-1,
+        default=0,
         help_text='Заполняется администрацией'
     )
     created_date = models.DateTimeField('Дата подачи заявки', auto_now=True)
@@ -152,7 +152,7 @@ class EnrollApplication(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         try:
             prev_app = EnrollApplication.objects.get(pk=self.id)
-        except EnrollApplication.DoesNotExist:
+        except Exception as e:
             return super().save(force_insert, force_update, using, update_fields)
 
         if self.message.strip() and prev_app.message != self.message:
