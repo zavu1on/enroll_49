@@ -215,7 +215,7 @@ class Statistic(models.Model):
     number_of_state_employees = models.PositiveIntegerField('Количество выпустившихся бюджетников')
 
     def __str__(self):
-        return self.class_name
+        return self.name
 
     class Meta:
         verbose_name = 'Статистика'
