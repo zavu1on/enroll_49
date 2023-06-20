@@ -6,9 +6,8 @@ from .validators import validate_password_exists
 
 class EnrollForm(forms.ModelForm):
     # captcha = ReCaptchaField(label=False)
-    achievements = forms.FileField(label='Индивидуальные достижения', widget=forms.FileInput(attrs={
+    achievements = forms.FileField(label='Индивидуальные достижения', required=False, widget=forms.FileInput(attrs={
         'multiple': True,
-        'required': False,
     }))
 
     def __init__(self, *args, **kwargs):

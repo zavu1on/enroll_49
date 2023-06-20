@@ -1,10 +1,9 @@
 import logging
 from colorfield.fields import ColorField
-from django.db import models, IntegrityError
+from django.db import models
 from django.conf import settings
 from django.core.mail import send_mail
 from solo.models import SingletonModel
-
 from . import validators
 # Create your models here.
 
