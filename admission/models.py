@@ -142,7 +142,7 @@ class EnrollApplication(models.Model):
     rating_place = models.PositiveIntegerField(
         'Место в рейтинге',
         default=0,
-        help_text='Заполняется администрацией'
+        help_text='Заполняется системой'
     )
     created_date = models.DateTimeField('Дата подачи заявки', auto_now=True)
 

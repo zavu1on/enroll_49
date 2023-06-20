@@ -167,7 +167,7 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
     inlines = (ExtraAchievementInline,)
     actions = [calculate_rating, zeroize_rating, make_exel, notify_applicants]
     fieldsets = (
-        ('Сведения о ребёнке', {
+        ('Cведения о ребёнке', {
             'fields': (
                 'fio',
                 'birthday',
@@ -188,7 +188,7 @@ class EnrollApplicationAdmin(admin.ModelAdmin):
                 'mother_address',
             )
         }),
-        ('Cведения об результатах обучения ребёнка', {
+        ('Cведения о результатах обучения ребёнка', {
             'fields': (
                 'certificate_average_score',
                 'russian_exam_point',
