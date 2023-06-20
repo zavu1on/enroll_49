@@ -17,8 +17,14 @@ class IndexView(TemplateView):
 
         ctx['profile_classes'] = ProfileClass.objects.all()
         ctx['teachers'] = Teacher.objects.all()
+        ctx['has_teachers'] = bool(ctx['teachers'])
         ctx['statistics'] = Statistic.objects.all()
-        ctx['active_statistic'] = ctx['statistics'][0]
+        ctx['has_statistics'] = bool(ctx['statistics'])
+
+        if ctx['has_statistics']:
+            ctx['active_statistic'] = ctx['statistics'][0]
+        else:
+            ctx['active_statistic'] = None
 
         return ctx
 

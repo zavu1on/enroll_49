@@ -149,6 +149,9 @@
                         </div>
                     </div>
                 {% endfor %}
+                {% if not has_teachers %}
+                    <div>Еще не заполнено</div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -225,8 +228,10 @@
                             </div>
                         </div>
                     {% endif %}
-
                 {% endfor %}
+                {% if not has_statistics %}
+                    <div>Еще не заполнено</div>
+                {% endif %}
             </div>
         </div>
         <div class="swiper-button-prev"><img src="{% static "image/arrow.svg" %}" alt="arrow"></div>
