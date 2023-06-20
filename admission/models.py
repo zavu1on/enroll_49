@@ -235,16 +235,19 @@ class SiteConfiguration(SingletonModel):
     )
     conflict_commission_date = models.DateField(
         'Дата сбора конфликтной комиссии',
+        help_text='Отображается в email-е',
         null=True,
         blank=True
     )
     start_conflict_commission_time = models.TimeField(
         'Время начала конфликтной комисси',
+        help_text='Отображается в email-е',
         null=True,
         blank=True
     )
     end_conflict_commission_time = models.TimeField(
         'Время окончания конфликтной комисси',
+        help_text='Отображается в email-е',
         null=True,
         blank=True
     )

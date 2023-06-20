@@ -113,6 +113,12 @@ def make_exel(modeladmin, request, queryset):
 
 @admin.action(description='Оповестить поступающих о результатах отбора (для выбранных заявление)')
 def notify_applicants(modeladmin, request, queryset):
+    solo = SiteConfiguration.get_solo()
+
+    if not solo.get_documents_date or not solo.conflict_commission_date or not solo.start_conflict_commission_time or \
+            not solo.end_conflict_commission_time:
+        logger.error('Вы не заполнили поля в разделе "Конфигурация", которые используются при отправки email')
+
     for app in queryset.all():
         app: EnrollApplication
         status_text = ''
@@ -123,7 +129,6 @@ def notify_applicants(modeladmin, request, queryset):
                 break
 
         try:
-            solo = SiteConfiguration.get_solo()
             message = '' \
 f'Текущий статус Вашего заявления в 10 {app.profile_class.name.lower()} класс лицея № 49 - <b>{status_text}</b>'
 
